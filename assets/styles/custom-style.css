@@ -20,6 +20,10 @@ html, body, .front-page, .row, .col-md-3, .col-md-9 {
     color: #fff;
 }
 
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover {
+    color: #EC6969;
+}
 
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
