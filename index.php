@@ -3,7 +3,7 @@
     require_once('app/views/layout/head.html');
 ?>
 <div class="container front-page">
-    <div class="navbar-left navbar-left-perfecthotels" id="search">
+    <div class="navbar-left active navbar-left-perfecthotels" id="search">
         <h1>Meny</h1>
         <p>Finn et hotell som passer deg</p>
         <form>
@@ -41,13 +41,13 @@
     </div>
     <div class="row" id="results">
         <div class="col-md-12 page-header">
-            <h1>Perfect Hotels Premium</h1>|
+            <h1>Perfect Hotels Premium</h1>
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12 result-container">
                     <div class="row">
-                        <div style="background: url(http://placekitten.com/g/250/250) center; background-size: cover;" class="col-md-3 result-image"></div>
+                        <div style="background: url(http://placekitten.com/g/250/250) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
                         <div class="col-md-9 result-description">
                             <div class="result-header">
                                 <h2>
@@ -55,6 +55,7 @@
                                     <div class="result-order pull-right">
                                         <button class="btn btn-xl btn-primary">Bestill Kattetoppen</button>
                                     </div>
+                                    <div class="clearfix"></div>
                                 </h2>
                                 <p>Ledige rom: <strong>9</strong></p>
                             </div>
@@ -72,14 +73,15 @@ Curabitur sed bibendum tortor, ac vehicula sem. Phasellus ac ante id ante consec
                 </div>
                 <div class="col-md-12 result-container">
                     <div class="row">
-                        <div style="background: url(http://placekitten.com/g/250/250) center; background-size: cover;" class="col-md-3 result-image"></div>
+                        <div style="background: url(http://lorempixel.com/output/business-q-c-640-480-2.jpg) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
                         <div class="col-md-9 result-description">
                             <div class="result-header">
                                 <h2>
-                                    Hotell Kattetoppen
+                                    Hotell Runketoppen
                                     <div class="result-order pull-right">
                                         <button class="btn btn-xl btn-primary">Bestill Kattetoppen</button>
                                     </div>
+                                    <div class="clearfix"></div>
                                 </h2>
                                 <p>Ledige rom: <strong>9</strong></p>
                             </div>
