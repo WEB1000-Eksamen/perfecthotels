@@ -1,33 +1,130 @@
-#search {
-    background-color: #C01919;
-    color: #fff;
-}
-#results {
-    background-color: #323232;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800);
+
 html, body, .front-page, .row, .col-md-3, .col-md-9 {
     height: 100%;
 }
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-}
-.navbar-default {
-    background-color: #C01919;
-    border-color: #C01919;
-}
-.navbar-default .navbar-brand {
-    color: #fff;
+body {
+    background-color: #323232;
 }
 
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-brand:hover {
-    color: #EC6969;
+/* NAVBAR */
+.navbar-left {
+    position: fixed;
+    width: 350px;
+    height: 100%;
+    left: -350px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.navbar-hamburger {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    font-size: 26px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.navbar-left.active {
+    left: 0;
+}
+.navbar-left.active > .navbar-hamburger {
+    left: 310px;
+}
+.navbar-left h1 {
+    padding: 20px;
+    margin: 0 0 20px 0;
+    line-height: 1;
+    background-color: #B81818;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+.navbar-left p {
+    padding: 0 20px;
+}
+.navbar-left > form > .row {
+    padding: 20px;
+}
+.navbar-left-perfecthotels {
+    background: #C01919;
+    color: #fff;
+}
+.select-query {
+    margin: 10px 0;
+}
+.select-query .col-md-12 {
+    margin-bottom: 10px;
+}
+.select-query .col-md-12,
+.select-query .col-md-6 {
+    padding: 0;
+}
+.select-query .col-md-4 {
+    line-height: 34px;
+}
+.select-query .col-md-4,
+.select-query .col-md-8 {
+    padding: 0;
 }
 
-.navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:focus,
-.navbar-default .navbar-nav>.active>a:hover {
+.select-query .first {
+    padding-right: 15px;
+}
+.select-query .last {
+    padding-left: 15px;
+}
+
+/* RESULTS */
+
+#results {
+    box-sizing: border-box;
+}
+#results > .row {
+    margin-top: 15px;
+}
+#results .page-header {
+    border: 0;
+}
+#results .page-header h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
     color: #fff;
-    background-color: #A61212;
+}
+.result-image {
+    background: #fff;
+    padding: 0;
+    height: 250px;
+}
+.result-container {
+    margin-top: 20px;
+}
+.result-description {
+    background: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    min-height: 250px;
+    max-height: 250px;
+    height: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.result-header {
+    padding: 20px;
+}
+.result-header h2 {
+    padding: 0;
+    margin: 0;
+}
+.result-body {
+    padding: 20px;
+}
+.result-order {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 0;
 }
