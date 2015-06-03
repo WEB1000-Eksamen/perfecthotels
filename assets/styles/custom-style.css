@@ -5,6 +5,7 @@ html, body, .front-page, .row, .col-md-3, .col-md-9 {
 }
 body {
     background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* NAVBAR */
@@ -137,6 +138,12 @@ body {
 .result-body {
     padding: 20px;
 }
+
+.result-categories ul li {
+    float: left;
+    width: 175px;
+}
+
 .result-order {
     margin-bottom: 20px;
     position: relative;

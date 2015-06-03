@@ -71,8 +71,16 @@
                                 </div>
                             </div>
                             <div class="row result-footer">
-                                <div class="col-md-9">
-
+                                <div class="col-md-9 result-categories">
+                                    <ul>
+                                        <li>Kort vei til sentrum</li>
+                                        <li>Fine damer på by'n</li>
+                                        <li>Åtte potte søppelskotte</li>
+                                        <li>Rånere er det mye av</li>
+                                        <li>Tulla, det er få rånere</li>
+                                        <li>Katter i fleng</li>
+                                    </ul>
+                                    <div class="clearfix"></div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="result-order pull-right">
