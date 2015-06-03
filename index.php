@@ -44,59 +44,44 @@
             <h1>Perfect Hotels Premium</h1>
         </div>
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12 result-container">
+            <div class="row  result-container">
+                <div class="col-md-12">
                     <div class="row">
                         <div style="background: url(http://placekitten.com/g/250/250) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
-                        <div class="col-md-9 result-description">
-                            <div class="result-header">
-                                <h2>
-                                    Hotell Kattetoppen
+                        <div class="col-md-9">
+                            
+                            <div class="row result-header">
+                                <div class="col-md-9">
+                                    <h2>Hotell Kattetoppen</h2>
+                                </div>
+                                <div class="col-md-3">
+                                    <p class="text-right">Ledige rom: <strong>9</strong></p>
+                                </div>
+                            </div>
+                            <div class="row result-description">
+                                <div class="col-md-9">
+                                    <div class="result-body">
+                                        <p>Velkommen til <strong>Hotell Kattetoppen</strong></p>
+                                        <p>Curabitur sed bibendum tortor, ac vehicula sem. Phasellus ac ante id ante consectetur semper. Donec sagittis congue mi, eget varius nunc lacinia quis.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h2 class="text-right">1 000 NOK</h2>
+                                    <p class="text-right">pr natt, pr pers</p>
+                                </div>
+                            </div>
+                            <div class="row result-footer">
+                                <div class="col-md-9">
+
+                                </div>
+                                <div class="col-md-3">
                                     <div class="result-order pull-right">
                                         <button class="btn btn-xl btn-primary">Bestill Kattetoppen</button>
                                     </div>
                                     <div class="clearfix"></div>
-                                </h2>
-                                <p>Ledige rom: <strong>9</strong></p>
+                                </div>
                             </div>
-                            <div class="result-body">
-                                <p>
-                                    Velkommen til <strong>Hotell Kattetoppen</strong>
-                                </p>
-                                <p>
-Curabitur sed bibendum tortor, ac vehicula sem. Phasellus ac ante id ante consectetur semper. Donec sagittis congue mi, eget varius nunc lacinia quis. Etiam nec purus vitae elit suscipit suscipit vitae eget erat. Duis dapibus porta diam, vitae tincidunt risus dictum ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris facilisis nisl nisi, et pellentesque enim imperdiet id. Nullam bibendum massa eget metus tincidunt, eu vulputate nisl auctor. Aliquam egestas dignissim tempus. Curabitur ac fringilla odio. Proin posuere libero enim, in pharetra mauris sagittis quis. Etiam dictum fringilla congue. Sed feugiat sem lorem, in viverra sapien efficitur sit amet.
-                                </p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 result-container">
-                    <div class="row">
-                        <div style="background: url(http://lorempixel.com/output/business-q-c-640-480-2.jpg) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
-                        <div class="col-md-9 result-description">
-                            <div class="result-header">
-                                <h2>
-                                    Hotell Runketoppen
-                                    <div class="result-order pull-right">
-                                        <button class="btn btn-xl btn-primary">Bestill Kattetoppen</button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </h2>
-                                <p>Ledige rom: <strong>9</strong></p>
-                            </div>
-                            <div class="result-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum vulputate sem. Morbi interdum purus consectetur fermentum efficitur. Nam vitae interdum turpis. Fusce porta sagittis dui, et scelerisque ex interdum a. Nam venenatis faucibus felis, tempor porta quam sagittis sit amet. Nunc et euismod arcu. Vivamus vulputate nibh enim. Suspendisse non lacinia velit, ac volutpat leo. Sed aliquam ultricies odio ullamcorper vestibulum.
-                                </p>
-                                <p>
-Curabitur sed bibendum tortor, ac vehicula sem. Phasellus ac ante id ante consectetur semper. Donec sagittis congue mi, eget varius nunc lacinia quis. Etiam nec purus vitae elit suscipit suscipit vitae eget erat. Duis dapibus porta diam, vitae tincidunt risus dictum ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris facilisis nisl nisi, et pellentesque enim imperdiet id. Nullam bibendum massa eget metus tincidunt, eu vulputate nisl auctor. Aliquam egestas dignissim tempus. Curabitur ac fringilla odio. Proin posuere libero enim, in pharetra mauris sagittis quis. Etiam dictum fringilla congue. Sed feugiat sem lorem, in viverra sapien efficitur sit amet.
-                                </p>
-                            </div>
-                            <div class="result-order pull-right">
-                                <button class="btn btn-xl btn-primary">Bestill Kattetoppen</button>
-                            </div>
-                            <div class="clearfix"></div>
+                            
                         </div>
                     </div>
                 </div>
