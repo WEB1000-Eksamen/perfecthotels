@@ -48,17 +48,48 @@ body {
 }
 .navbar-left h1 {
     padding: 20px;
-    margin: 0 0 20px 0;
+    margin: 0;
     line-height: 1;
     background-color: #B81818;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
 }
+
+.navbar-left-menu {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 0;
+    background-color: #B81818;
+}
+.navbar-left-menu li {
+    float: left;
+    list-style: none;
+    padding: 20px 0;
+    width: 33%;
+    text-align: center;
+}
+.navbar-left-menu li:hover {
+    
+}
+.navbar-left-menu li a {
+    padding: 20px 15px;
+    color: #fff;
+    font-weight: 700;
+}
+.navbar-left-menu li a:hover,
+.navbar-left-menu li a:focus,
+.navbar-left-menu li a:active {
+    color: #fff;
+}
+
 .navbar-left p {
     padding: 0 20px;
 }
 .navbar-left > form > .row {
-    padding: 20px;
+    padding: 0 20px;
+}
+.navbar-left > form > .row:first-child {
+    margin-top: 20px;
 }
 .navbar-left-perfecthotels {
     background: #C01919;
@@ -81,13 +112,25 @@ body {
 .select-query .col-md-8 {
     padding: 0;
 }
-
 .select-query .first {
-    padding-right: 15px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 .select-query .last {
-    padding-left: 15px;
+    width: 100%;
 }
+
+.select-country .btn-group .btn+.btn,
+.select-country .btn-group .btn+.btn-group,
+.select-country .btn-group .btn-group+.btn,
+.select-country .btn-group .btn-group+.btn-group {
+    margin-left: 0;
+}
+.select-country .btn-default {
+    border-radius: 0;
+}
+
+
 
 /* RESULTS */
 
@@ -113,8 +156,44 @@ body {
     height: 250px;
 }
 .result-container {
-    margin-top: 20px;
+    margin: 30px 0 50px 0;
+    border: 1px solid #eee;
 }
+
+.result-header {
+    padding: 0;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.result-header .col-md-12 {
+    padding-right: 0;
+}
+.result-header h2 {
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    color: #000000;
+    float: left;
+}
+.result-header p {
+    margin: 8px 0 0 0;
+    float: right;
+    text-align: right;
+}
+.result-header .address {
+  display: block;
+  margin-top: 5px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.result-header h2:hover,
+.result-header p:hover,
+.result-header .address:hover {
+    cursor: default;
+}
+
 .result-description {
     background: #fff;
     box-sizing: border-box;
@@ -124,28 +203,49 @@ body {
 }
 .result-description h2 {
     margin: 10px 0 0 0;
-}
-.result-header {
-    padding: 0;
-}
-.result-header h2 {
-    padding: 0;
-    margin: 0;
-}
-.result-header p {
-    margin: 0;
+    color: #B81818;
+    font-weight: 600;
 }
 .result-body {
-    padding: 20px;
+    padding: 5px 20px 5px 20px;
+    margin-top: 5px;
+    max-height: 120px;
+    height: 120px;
+    font-size: 16px;
 }
 
+.result-categories {
+    margin-top: 0;
+}
+.result-categories ul {
+    margin-bottom: 0;
+}
 .result-categories ul li {
     float: left;
-    width: 175px;
+    width: 180px;
 }
 
 .result-order {
-    margin-bottom: 20px;
-    position: relative;
-    bottom: 0;
+    margin-top: 0;
+}
+.result-order .btn {
+    float: right;
+    display: block;
+    width: 100%;
+}
+.result-price {
+    text-align: right;
+}
+.result-price-info {
+    text-align: right;
+    font-size: 12px;
+}
+.select-roomtype {
+    margin-top: 15px;
+}
+
+
+
+.select-query .text {
+    margin: 0;
 }
