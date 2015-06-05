@@ -2,35 +2,6 @@
     require_once 'app/bootstrap.php';
     require_once('app/views/layout/head.html');
 ?>
-<<<<<<< HEAD
-    <div class="container-fluid front-page">
-        <div class="row">
-            <div class="col-md-3" id="search">
-                <h2>Søk:</h2>
-                <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p>Velg land</p>
-                        </div>
-                        <div class="col-md-8">
-                        <select class="form-control">
-                            <option>Norge</option>
-                            <option>Sverige</option>
-                            <option>Danmark</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input placeholder="Innsjekking" name="date[]" type="text" id="dateFrom" class="form-control date" />
-                        </div>
-                        <div class="col-md-6">
-                            <input placeholder="Utsjekking" name="date[]" type="text" id="dateTo" class="form-control date" />
-                        </div>
-                    </div>
-                </form>
-=======
-
     <div class="container front-page">
         <div class="navbar-left active navbar-left-perfecthotels" id="search">
             <h1>Meny</h1>
@@ -98,7 +69,6 @@
             <div class="navbar-hamburger">
                 <i class="glyphicon glyphicon-menu-hamburger"></i>
                 <i class="glyphicon glyphicon-remove"></i>
->>>>>>> 5323306bd0854b37738bd510490dfed3cddf8e4f
             </div>
         </div>
         <div class="row" id="results">
@@ -124,8 +94,7 @@
                                 <div class="row result-description">
                                     <div class="col-md-9">
                                         <div class="result-body">
-                                            <p>Vær ikke redd for de to søstrene som står i gangen og vil leke. De er egentlig snille! (Stol på oss, ok???)</p>
-                                            <p>Vær ikke redd for de to søstrene som står i gangen og vil leke. De er egentlig snille! (Stol på oss, ok???)</p>
+                                            <p>Kort vei til alt i byen. Det finnes svømmebasseng i alle rom, og disse blir renset hver morgen.</p>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -137,9 +106,9 @@
                                     <div class="col-md-9 result-categories">
                                         <ul>
                                             <li>Kort vei til sentrum</li>
-                                            <li>Fine damer på by'n</li>
-                                            <li>Åtte potte søppelskotte</li>
-                                            <li>Rånere er det mye av</li>
+                                            <li>Svømmebasseng</li>
+                                            <li>Morgen- og kveldsbuffé</li>
+                                            <li>Ca. 12 meter til nærmeste bar</li>
                                             <div class="clearfix"></div>
                                         </ul>
                                     </div>
