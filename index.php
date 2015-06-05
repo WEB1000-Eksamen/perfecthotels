@@ -94,7 +94,7 @@
                                 <div class="row result-description">
                                     <div class="col-md-9">
                                         <div class="result-body">
-                                            <p>Kort vei til alt i byen. Det finnes svømmebasseng i alle rom, og disse blir renset hver morgen.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus venenatis lorem nec faucibus. Nam dapibus mattis purus, non egestas leo. Suspendisse purus purus, mattis id ligula id, posuere eleifend nulla. Etiam vehicula mattis laoreet. Aliquam erat volutpat. Quisque efficitur vulputate magna, eget lobortis tortor suscipit a. Ut eu imperdiet libero. Etiam mollis consectetur posuere. Duis feugiat imperdiet purus, sed malesuada nisl rhoncus accumsan. Etiam condimentum est sit amet tincidunt lobortis. Mauris consequat tempor libero. Donec facilisis leo eu lectus finibus egestas. Maecenas ut ipsum arcu. Suspendisse sed maximus sapien, id dignissim tortor. Vivamus volutpat, ex nec maximus pretium, odio lorem tempus erat, a gravida est turpis id enim.</p>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
