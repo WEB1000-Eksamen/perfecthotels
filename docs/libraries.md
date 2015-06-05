@@ -1,4 +1,4 @@
-=Client side Libraries=
+===Client side Libraries===
 
 - jQuery 1.11.3
 - jQuery-UI 1.11.4
