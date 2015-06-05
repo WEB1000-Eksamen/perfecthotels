@@ -1,33 +1,251 @@
-#search {
-    background-color: #C01919;
-    color: #fff;
-}
-#results {
-    background-color: #323232;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800);
+
 html, body, .front-page, .row, .col-md-3, .col-md-9 {
     height: 100%;
 }
-.navbar {
-    margin-bottom: 0;
+body {
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* NAVBAR */
+.navbar-left {
+    position: fixed;
+    width: 350px;
+    height: 100%;
+    left: -350px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    z-index: 1;
+}
+.navbar-hamburger {
+    position: fixed;
+    top: 15px;
+    line-height: .5;
+    padding: 10px;
+    left: 15px;
+    font-size: 26px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    color: #000;
+}
+.navbar-hamburger:hover {
+    cursor: pointer;
+}
+.navbar-left.active {
+    left: 0;
+}
+.navbar-left.active > .navbar-hamburger {
+    left: 290px;
+    color: #fff;
+}
+.navbar-left.active > .navbar-hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.11);
+}
+.navbar-left h1 {
+    padding: 20px;
+    margin: 0;
+    line-height: 1;
+    background-color: #B81818;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.navbar-left-menu {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 0;
+    background-color: #B81818;
+}
+.navbar-left-menu li {
+    float: left;
+    list-style: none;
+    padding: 20px 0;
+    width: 33%;
+    text-align: center;
+}
+.navbar-left-menu li:hover {
+    
+}
+.navbar-left-menu li a {
+    padding: 20px 15px;
+    color: #fff;
+    font-weight: 700;
+}
+.navbar-left-menu li a:hover,
+.navbar-left-menu li a:focus,
+.navbar-left-menu li a:active {
+    color: #fff;
+}
+
+.navbar-left p {
+    padding: 0 20px;
+}
+.navbar-left > form > .row {
+    padding: 0 20px;
+}
+.navbar-left > form > .row:first-child {
+    margin-top: 20px;
+}
+.navbar-left-perfecthotels {
+    background: #C01919;
+    color: #fff;
+}
+.select-query {
+    margin: 10px 0;
+}
+.select-query .col-md-12 {
+    margin-bottom: 10px;
+}
+.select-query .col-md-12,
+.select-query .col-md-6 {
+    padding: 0;
+}
+.select-query .col-md-4 {
+    line-height: 34px;
+}
+.select-query .col-md-4,
+.select-query .col-md-8 {
+    padding: 0;
+}
+.select-query .first {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.select-query .last {
+    width: 100%;
+}
+
+.select-country .btn-group .btn+.btn,
+.select-country .btn-group .btn+.btn-group,
+.select-country .btn-group .btn-group+.btn,
+.select-country .btn-group .btn-group+.btn-group {
+    margin-left: 0;
+}
+.select-country .btn-default {
     border-radius: 0;
 }
-.navbar-default {
-    background-color: #C01919;
-    border-color: #C01919;
+
+
+
+/* RESULTS */
+
+#results {
+    box-sizing: border-box;
 }
-.navbar-default .navbar-brand {
-    color: #fff;
+#results > .row {
+    margin-top: 15px;
+}
+#results .page-header {
+    border: 0;
+}
+#results .page-header h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: #000;
+}
+#results 
+.result-image {
+    background: #fff;
+    padding: 0;
+    height: 250px;
+}
+.result-container {
+    margin: 30px 0 50px 0;
+    border: 1px solid #eee;
 }
 
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-brand:hover {
-    color: #EC6969;
+.result-header {
+    padding: 0;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.result-header .col-md-12 {
+    padding-right: 0;
+}
+.result-header h2 {
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    color: #000000;
+    float: left;
+}
+.result-header p {
+    margin: 8px 0 0 0;
+    float: right;
+    text-align: right;
+}
+.result-header .address {
+  display: block;
+  margin-top: 5px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.result-header h2:hover,
+.result-header p:hover,
+.result-header .address:hover {
+    cursor: default;
 }
 
-.navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:focus,
-.navbar-default .navbar-nav>.active>a:hover {
-    color: #fff;
-    background-color: #A61212;
+.result-description {
+    background: #fff;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.result-description h2 {
+    margin: 10px 0 0 0;
+    color: #B81818;
+    font-weight: 600;
+}
+.result-body {
+    padding: 5px 20px 5px 20px;
+    margin-top: 5px;
+    max-height: 120px;
+    height: 120px;
+    font-size: 16px;
+}
+
+.result-categories {
+    margin-top: 0;
+}
+.result-categories ul {
+    margin-bottom: 0;
+}
+.result-categories ul li {
+    float: left;
+    width: 180px;
+}
+
+.result-order {
+    margin-top: 0;
+}
+.result-order .btn {
+    float: right;
+    display: block;
+    width: 100%;
+}
+.result-price {
+    text-align: right;
+}
+.result-price-info {
+    text-align: right;
+    font-size: 12px;
+}
+.select-roomtype {
+    margin-top: 15px;
+}
+
+
+
+.select-query .text {
+    margin: 0;
 }

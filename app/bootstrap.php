@@ -4,4 +4,4 @@
                     autoloading etc
     */
     session_start();
-    require_once 'api/HashEmail.php';
+    require_once 'classes/Hash.php';
