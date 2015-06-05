@@ -1,34 +1,35 @@
-var dates = ['dateFrom', 'dateTo'];
+var dates = ['From', 'To'];
 
 for(var i = 0; i < dates.length; i++) {
-    var current = dates[i];
+    var current = dates[i],
+        selectorString = '#date' + current;
 
-    $('#' + current).datepicker({
+    $(selectorString).datepicker({
         showOn: "focus",
         dateFormat: 'DD dd. MM yy',
         dayNames: [ "Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag" ],
         dayNamesMin: [ "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø" ],
-        monthNames: [ 
-            "Januar", 
-            "Februar", 
-            "Mars", 
-            "April", 
-            "Mai", 
-            "Juni", 
-            "Juli", 
-            "August", 
-            "September", 
-            "Oktober", 
-            "November", 
-            "Desember" 
+        monthNames: [
+            "Januar",
+            "Februar",
+            "Mars",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "Desember"
         ]
     });
 
-    $('#' + current).on('click', function () {
-        $('#' + current).datepicker('show');
+    $(selectorString).on('click', function () {
+        $(selectorString).datepicker('show');
     });
-    $('#' + current).on('focus', function () {
-        $('#' + current).datepicker('show');
+    $(selectorString).on('focus', function () {
+        $(selectorString).datepicker('show');
     });
 }
 

@@ -6,12 +6,26 @@
             <div class="col-md-3" id="search">
                 <h2>Søk:</h2>
                 <form>
-                    <select class="form-control">
-                        <option>Norge</option>
-                        <option>Sverige</option>
-                        <option>Danmark</option>
-                    </select>
-                    <input type="text" id="dateFrom" class="form-control" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Velg land</p>
+                        </div>
+                        <div class="col-md-8">
+                        <select class="form-control">
+                            <option>Norge</option>
+                            <option>Sverige</option>
+                            <option>Danmark</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input placeholder="Innsjekking" name="date[]" type="text" id="dateFrom" class="form-control date" />
+                        </div>
+                        <div class="col-md-6">
+                            <input placeholder="Utsjekking" name="date[]" type="text" id="dateTo" class="form-control date" />
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="col-md-9" id="results">
