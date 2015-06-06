@@ -33,6 +33,8 @@ $(function () {
     
     var fromDate = $('#fromDate'),
         toDate = $('#toDate'),
+        fromDateBtn = $('#fromDateButton'),
+        toDateBtn = $('#toDateButton'),
         options = {
             showOn: "focus",
             numberOfMonths: 1,
@@ -80,10 +82,16 @@ $(function () {
     fromDate.on('focus', function () {
         fromDate.datepicker('show');
     });
+    fromDateBtn.on('click', function () {
+        fromDate.datepicker('show');
+    });
     toDate.on('click', function () {
         toDate.datepicker('show');
     });
     toDate.on('focus', function () {
+        toDate.datepicker('show');
+    });
+    toDateBtn.on('click', function () {
         toDate.datepicker('show');
     });
     

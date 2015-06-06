@@ -18,16 +18,16 @@
                 <div class="row select-query">
                     <div class="col-md-12 text"><strong>Jeg ønsker et hotell i</strong></div>
                     <div class="col-md-12 select-country">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" id="option1" autocomplete="off" checked> <strong>Norge</strong>
+                        <div class="btn-group select-country-group" data-toggle="buttons">
+                            <!--<label class="btn btn-default">
+                                <input type="radio" name="country" value="Norge" autocomplete="off" checked> <strong>Norge</strong>
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" id="option2" autocomplete="off"> <strong>Sverige</strong>
+                                <input type="radio" name="country" value="Norge" autocomplete="off"> <strong>Sverige</strong>
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" id="option3" autocomplete="off"> <strong>Danmark</strong>
-                            </label>
+                                <input type="radio" name="country" value="Norge" autocomplete="off"> <strong>Danmark</strong>
+                            </label>-->
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <div id="date-from-to" class="col-md-12 text"><strong>og vil ha rommet fra</strong></div>
                     <div class="col-md-12">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <span id="fromDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             <input name="fromDate" type="text" id="fromDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
 
@@ -44,7 +44,7 @@
                     <div id="date-from-to" class="col-md-12 text"><strong>til</strong></div>
                     <div class="col-md-12">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <span id="toDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             <input name="toDate" type="text" id="toDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
                     </div>
@@ -53,9 +53,8 @@
                 <div class="row select-query select-roomtype">
                     <div class="col-md-12 text"><strong>med romtype</strong></div>
                     <div class="col-md-12">
-                        <select class="form-control">
-                            <option>Suite (2 senger)</option>
-                            <option>Grupperom (4 senger)</option>
+                        <select class="form-control select-roomtype-group">
+                            <option disabled selected>Velg romtype...</option>
                         </select>
                     </div>
                 </div>
