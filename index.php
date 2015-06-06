@@ -2,7 +2,6 @@
     require_once 'app/bootstrap.php';
     require_once('app/views/layout/head.html');
 ?>
-
     <div class="container front-page">
         <div class="navbar-left active navbar-left-perfecthotels" id="search">
             <h1>Meny</h1>
@@ -94,8 +93,7 @@
                                 <div class="row result-description">
                                     <div class="col-md-9">
                                         <div class="result-body">
-                                            <p>Vær ikke redd for de to søstrene som står i gangen og vil leke. De er egentlig snille! (Stol på oss, ok???)</p>
-                                            <p>Vær ikke redd for de to søstrene som står i gangen og vil leke. De er egentlig snille! (Stol på oss, ok???)</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus venenatis lorem nec faucibus. Nam dapibus mattis purus, non egestas leo. Suspendisse purus purus, mattis id ligula id, posuere eleifend nulla. Etiam vehicula mattis laoreet. Aliquam erat volutpat. Quisque efficitur vulputate magna, eget lobortis tortor suscipit a. Ut eu imperdiet libero. Etiam mollis consectetur posuere. Duis feugiat imperdiet purus, sed malesuada nisl rhoncus accumsan. Etiam condimentum est sit amet tincidunt lobortis. Mauris consequat tempor libero. Donec facilisis leo eu lectus finibus egestas. Maecenas ut ipsum arcu. Suspendisse sed maximus sapien, id dignissim tortor. Vivamus volutpat, ex nec maximus pretium, odio lorem tempus erat, a gravida est turpis id enim.</p>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -107,9 +105,9 @@
                                     <div class="col-md-9 result-categories">
                                         <ul>
                                             <li>Kort vei til sentrum</li>
-                                            <li>Fine damer på by'n</li>
-                                            <li>Åtte potte søppelskotte</li>
-                                            <li>Rånere er det mye av</li>
+                                            <li>Svømmebasseng</li>
+                                            <li>Morgen- og kveldsbuffé</li>
+                                            <li>Ca. 12 meter til nærmeste bar</li>
                                             <div class="clearfix"></div>
                                         </ul>
                                     </div>

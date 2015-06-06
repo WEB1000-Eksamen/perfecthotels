@@ -95,4 +95,13 @@ $(function () {
         toDate.datepicker('show');
     });
     
+    /* mock api */
+    
+    var hotelContent = [{
+        hotelName: '',
+        text: '',
+        image: '',
+        categories: []
+    }];
+    
 });
