@@ -1,6 +1,6 @@
 <?php
 
-require_once '..\bootstrap.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $database = new Database($config);
 $pdo = $database->getConnection();
 
