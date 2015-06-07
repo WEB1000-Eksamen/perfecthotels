@@ -4,4 +4,10 @@
                     autoloading etc
     */
     session_start();
-    require_once 'classes/Hash.php';
+    // access to $config variable
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php';
+    $config = config();
+    
+    // additional classes
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Hash.php';
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Database.php';

@@ -27,45 +27,30 @@ $(function () {
     });
     
     /* NAVBAR DATEPICKER */
-    var today = new Date(),
-        tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    var dateFormat = 'dd M yy',
+        today = moment(),
+        tomorrow = moment(today).add(1, 'days');
     
     var fromDate = $('#fromDate'),
         toDate = $('#toDate'),
+        fromDateBtn = $('#fromDateButton'),
+        toDateBtn = $('#toDateButton'),
         options = {
             showOn: "focus",
             numberOfMonths: 1,
-            dateFormat: 'DD dd. MM yy',
-            dayNames: [ "Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag" ],
-            dayNamesMin: [ "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø" ],
-            monthNames: [ 
-                "Januar", 
-                "Februar", 
-                "Mars", 
-                "April", 
-                "Mai", 
-                "Juni", 
-                "Juli", 
-                "August", 
-                "September", 
-                "Oktober", 
-                "November", 
-                "Desember" 
-            ]
+            dateFormat: dateFormat
         },
         fromDateOptions = $.extend(true, {
-            minDate: today,
+            minDate: today.toDate(),
             onClose: function (selectedDate) {
                 if (selectedDate) {
-                    var validDate = new Date(selectedDate);
-                    validDate.setDate(validDate.getDate() + 1);
-                    toDate.datepicker("option", "minDate", validDate);
+                    var minDateForRange = moment(selectedDate).add(1, 'days');
+                    toDate.datepicker("option", "minDate", minDateForRange.toDate());
                 }
             }
         }, options),
         toDateOptions = $.extend(true, {
-            minDate: tomorrow,
+            minDate: tomorrow.toDate(),
             onClose: function (selectedDate) {
                 fromDate.datepicker("option", "maxDate", selectedDate);
             }
@@ -80,20 +65,16 @@ $(function () {
     fromDate.on('focus', function () {
         fromDate.datepicker('show');
     });
+    fromDateBtn.on('click', function () {
+        fromDate.datepicker('show');
+    });
     toDate.on('click', function () {
         toDate.datepicker('show');
     });
     toDate.on('focus', function () {
         toDate.datepicker('show');
     });
-    
-    /* mock api */
-    
-    var hotelContent = [{
-        hotelName: '',
-        text: '',
-        image: '',
-        categories: []
-    }];
-    
+    toDateBtn.on('click', function () {
+        toDate.datepicker('show');
+    });
 });
