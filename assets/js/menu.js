@@ -5,20 +5,36 @@ $(function () {
         countrySelectBtn = $('<input type="radio" name="country" value="Norge" id="option1" autocomplete="off" checked> <strong>Norge</strong>'),
         roomtypeSelectOpt;
     
-    function getCountries (callback) {
+    function getCountries (callback, errorCallback) {
         $.ajax({
             method: 'GET',
             url: 'app/api/getCountries.php'
         }).done(function (data) {
+            if (data.errorCode) {
+                switch(data.errorCode) {
+                    case 1:
+                        errorCallback('Ingen land er registrert.');
+                        break;
+                }
+                return;
+            }
             callback(data);
         });
     }
     
-    function getRoomtypes (callback) {
+    function getRoomtypes (callback, errorCallback) {
         $.ajax({
             method: 'GET',
             url: 'app/api/getRoomtypes.php'
         }).done(function (data) {
+            if (data.errorCode) {
+                switch(data.errorCode) {
+                    case 1:
+                        errorCallback('Ingen romtyper er registrert.');
+                        break;
+                }
+                return;
+            }
             callback(data);
         });
     }
@@ -49,6 +65,10 @@ $(function () {
                 
                 i++;
             }
+        }, function (errorText) {
+            $('.select-country-group').remove();
+            $('.select-country').append('<p></p>').text(errorText);
+            $('#searchBtn').attr('disabled', true);
         });
     }
     
@@ -69,6 +89,10 @@ $(function () {
                 
                 i++;
             }
+        }, function (errorText) {
+            $('.select-roomtype-group').remove();
+            $('.select-roomtype-col').append('<p></p>').text(errorText);
+            $('#searchBtn').attr('disabled', true);
         });
     }
     

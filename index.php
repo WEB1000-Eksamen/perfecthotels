@@ -51,8 +51,8 @@
 
                 <div class="row select-query select-roomtype">
                     <div class="col-md-12 text"><strong>med romtype</strong></div>
-                    <div class="col-md-12">
-                        <select class="form-control select-roomtype-group">
+                    <div class="col-md-12 select-roomtype-col">
+                        <select name="roomtype" class="form-control select-roomtype-group">
                             <option disabled selected>Velg romtype...</option>
                         </select>
                     </div>
