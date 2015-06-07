@@ -34,4 +34,5 @@ INNER JOIN images ON (
 GROUP BY 
     hotels.HotelName,
     roomtypes.RoomtypeName
+HAVING COUNT(hotelroomtypes.HRID) > 0
 ORDER BY hotels.HotelName ASC

@@ -181,10 +181,9 @@ body {
     text-align: right;
 }
 .result-header .address {
-  display: block;
-  margin-top: 5px;
+  float: left;
+  margin-top: 0;
   font-weight: 600;
-  border-bottom: 1px solid #eee;
   padding-bottom: 10px;
 }
 .result-header h2:hover,
@@ -199,6 +198,7 @@ body {
     padding: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-top: 1px solid #eee;
 }
 .result-description h2 {
     margin: 10px 0 0 0;
@@ -247,4 +247,8 @@ body {
 
 .select-query .text {
     margin: 0;
+}
+
+.result-header .date {
+    float: right;
 }

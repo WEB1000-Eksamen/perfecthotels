@@ -10,7 +10,8 @@ class Database {
             . ':host=' .
             $config["database"]["host"]
             . ';dbname=' .
-            $config["database"]["dbname"],
+            $config["database"]["dbname"]
+            . ';charset=utf8',
             $config["database"]["username"],
             $config["database"]["password"]
         );

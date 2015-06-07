@@ -87,7 +87,9 @@
                                         </h2>
                                         <p>Ledige rom: <strong>9</strong></p>
                                         <div class="clearfix"></div>
+                                        <span class="date">Fra: 07 Juni 2015 Til: 08 Juni 2015</span>
                                         <span class="address">Raveien 227 A, 3084 Borre</span>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                                 <div class="row result-description">
