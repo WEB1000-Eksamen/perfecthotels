@@ -77,4 +77,14 @@ $(function () {
     toDateBtn.on('click', function () {
         toDate.datepicker('show');
     });
+    
+    
+    /* MENU AJAX */
+    var countrySelect = $('.select-country-group'),
+        roomtypeSelect = $('.select-roomtype-group'),
+        countrySelectBtn = $('<input type="radio" name="country" value="Norge" id="option1" autocomplete="off" checked> <strong>Norge</strong>'),
+        roomtypeSelectOpt;
+    
+    fillCountryGroup(countrySelect);
+    fillRoomtypeGroup(roomtypeSelect);
 });
