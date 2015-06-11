@@ -7,7 +7,7 @@
             <h1>Meny</h1>
             <ul class="navbar-left-menu">
                 <li><a href="">Hjelp</a></li>
-                <li><a href="">Se bookings</a></li>
+                <li><a href="">Dine bookings</a></li>
                 <li><a href="">Sjekk inn</a></li>
                 <div class="clearfix"></div>
             </ul>
