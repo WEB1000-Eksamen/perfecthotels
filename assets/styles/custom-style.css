@@ -243,12 +243,80 @@ body {
     margin-top: 15px;
 }
 
-
-
 .select-query .text {
     margin: 0;
 }
 
 .result-header .date {
     float: right;
+}
+
+/* ORDER MODAL */
+
+#modal-hotel-price {
+    float: left;
+    font-size: 30px;
+    color: #B81818;
+}
+
+#modal-hotel-address {
+    float: left;
+    font-weight: 900;
+    margin: 20px 0 0 0;
+}
+
+.order-hotel-modal-container {
+    width: 200%;
+    padding: 15px  0 0 0;
+}
+
+.step1, .step2 {
+    width: 50%;
+    float: left;
+    -webkit-transition: -webkit-transform 0.5s ease;
+    -moz-transition: -moz-transform 0.5s ease;
+    -o-transition: -o-transform 0.5s ease;
+    transition: transform .5s ease;
+}
+.step1 .row, .step2 .row {
+    margin: 0;
+    padding: 0;
+}
+
+.modal-content {
+    overflow: hidden;
+}
+
+.order .step1, .order .step2 {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.order-hotel-user-input input {
+    width: 25%;
+    margin-right: 10px;
+}
+
+#order-hotel-modal-reference {
+    background-color: #B81818;
+    font-weight: 600;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    font-size: 30px;
+    color: #fff;
+}
+
+.order-hotel-modal-reference-info {
+    font-weight: 200;
+    font-size: 16px;
+}
+
+#modal-hotel-country {
+    float: right;
+    margin: 20px 0 0 0;
+    font-weight: 900;
 }

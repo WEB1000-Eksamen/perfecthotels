@@ -4,10 +4,14 @@ $(function () {
     
     var navbar      = $('.navbar-left'),
         iconClose   = $('.navbar-hamburger .glyphicon-remove'),
-        iconOpen    = $('.navbar-hamburger .glyphicon-menu-hamburger');
+        iconOpen    = $('.navbar-hamburger .glyphicon-menu-hamburger'),
+        searchBtn   = $('#searchBtn');
     
     // Hide icon by default
     iconOpen.hide();
+    
+    // disable search button by default
+    searchBtn.attr('disabled', true);
     
     $('.navbar-hamburger').bind('click', function () {
         navbar.toggleClass('active');
@@ -87,4 +91,31 @@ $(function () {
     
     fillCountryGroup(countrySelect);
     fillRoomtypeGroup(roomtypeSelect);
+    
+    var selectRoomtypes = $('.select-roomtype-group'),
+        inputFields = [toDate, fromDate, selectRoomtypes];
+    
+    for (input in inputFields) {
+        inputFields[input].on('change', function () {
+            validateFields(searchBtn, inputFields);
+        });
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

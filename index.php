@@ -12,7 +12,7 @@
                 <div class="clearfix"></div>
             </ul>
             <p>Finn et hotell som passer deg ved å benytte denne søkemodulen.</p>
-            <form>
+            <form id="lookup-form">
 
                 <div class="row select-query">
                     <div class="col-md-12 text"><strong>Jeg ønsker et hotell i</strong></div>
@@ -36,7 +36,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span id="fromDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input name="fromDate" type="text" id="fromDate" class="form-control" aria-describedby="date-from-to" />
+                            <input readonly name="fromDate" type="text" id="fromDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
 
                     </div>
@@ -44,7 +44,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span id="toDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input name="toDate" type="text" id="toDate" class="form-control" aria-describedby="date-from-to" />
+                            <input readonly name="toDate" type="text" id="toDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-3 result-order">
-                                        <button data-hotel-id="" class="btn btn-primary">
+                                        <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="" class="btn btn-primary">
                                             Velg
                                         </button>
                                         <div class="clearfix"></div>

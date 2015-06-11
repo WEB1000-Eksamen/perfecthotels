@@ -88,3 +88,45 @@ function fillRoomtypeGroup (roomtypeGroup) {
         $('#searchBtn').attr('disabled', true);
     });
 }
+
+function doSearch (modal) {
+    
+}
+
+function validateFields (button, inputFields) {
+    var fields = inputFields.length,
+        validatedFields = 0;
+        
+    if (fields > 0) {
+        for (input in inputFields) {
+            if (inputFields[input].val()) {
+                validatedFields++;
+            }
+        }
+        if (validatedFields >= fields) {
+            button.attr('disabled', false);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
