@@ -11,10 +11,9 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
     
     $HotelID    = $_POST['HotelID'];
     $RoomtypeID = $_POST['RoomtypeID'];
-    $Email      = $_POST['Email'];
     $FromDate   = $_POST['FromDate'];
     $ToDate     = $_POST['ToDate'];
-    
+    $Email      = $_POST['Email'];
     $Hash       = Hash::make($Email);
     
     $FromDate = date('Y-m-d', strtotime($FromDate));
@@ -49,43 +48,10 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
         exit();
     }
     
-    // check if order with same HRID is made before on same date
+    // return the Reference
+    $bookingHelpers = new PostBookingFns($pdo);
+    $bookingHelpers->insertOrderBooking($HotelID, $RoomtypeID, $FromDate, $ToDate, $Email, $Hash);
     
-    $sql = "
-        SELECT OrderID, Email, Reference
-        FROM orders
-        WHERE -- Email = ? OR
-        Reference = ?
-    ";
-    
-    $stmt = $pdo->prepare($sql);
-    unset($sql);
-    $stmt->execute(array($Email, $Hash));
-    
-    $newOrder = array(
-        "Email" => $Email,
-        "Reference" => $Hash,
-        "OrderID" => null
-    );
-    
-    if ($stmt->rowCount() > 0) {
-        foreach ($stmt->fetch(PDO::FETCH_ASSOC) as $column => $value) {
-            $newOrder[$column] = $value; 
-        }
-    }
-    
-    echo json_encode($newOrder);
-
-    // if it is, quit execution and return error
-    // if not
-        // hash the email,
-        // check if email hash already exists,
-            // if it does, get order ID
-            // if it doesn't, insert email and hash and get the order ID
-        // store order ID for booking values in variable,
-        // select a random HRID based on the hotel and roomtype
-        // which isn't already booked for the date
-
 }
 
 
