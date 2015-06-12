@@ -17,12 +17,14 @@ function getModalInfo (hotelid, roomtypeid, success, error) {
     });
 }
 
-function orderRoom (email, fromdate, todate, success, error) {
+function orderRoom (hotelid, roomtypeid, email, fromdate, todate, success, error) {
     $.ajax({
-        url: 'app/api/postOrder.php',
+        url: 'app/api/postBooking.php',
         method: 'POST',
         dataType: 'json',
         data: {
+            HotelID: hotelid,
+            RoomtypeID: roomtypeid,
             Email: email,
             FromDate: fromdate,
             ToDate: todate
@@ -32,7 +34,7 @@ function orderRoom (email, fromdate, todate, success, error) {
             error({error: response.error});
             return;
         }
-        success();
+        success(response);
         return;
     });
 }
