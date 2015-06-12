@@ -1,7 +1,8 @@
 function getCountries (callback, errorCallback) {
     $.ajax({
         method: 'GET',
-        url: 'app/api/getCountries.php'
+        url: 'app/api/getCountries.php',
+        dataType: 'json'
     }).done(function (data) {
         if (data.errorCode) {
             switch(data.errorCode) {
@@ -18,7 +19,8 @@ function getCountries (callback, errorCallback) {
 function getRoomtypes (callback, errorCallback) {
     $.ajax({
         method: 'GET',
-        url: 'app/api/getRoomtypes.php'
+        url: 'app/api/getRoomtypes.php',
+        dataType: 'json'
     }).done(function (data) {
         if (data.errorCode) {
             switch(data.errorCode) {
@@ -32,10 +34,10 @@ function getRoomtypes (callback, errorCallback) {
     });
 }
 
-function fillCountryGroup (countryGroup) {
+function fillCountryGroup (countryGroup, selectCountryContainer, loader) {
 
     var i = 0;
-
+    
     getCountries(function (countries) {
         for (countryIndex in countries) {
 
@@ -47,7 +49,9 @@ function fillCountryGroup (countryGroup) {
                     autocomplete: 'off'
                 }).val(country.CountryID),
                 buttonText = $('<strong>').text(country.CountryName);
-
+            
+            button.addClass('select-country-radio');
+            
             if (i === 0) {
                 button.prop('checked', true);
                 buttonLabel.addClass('active');
@@ -58,6 +62,7 @@ function fillCountryGroup (countryGroup) {
 
             i++;
         }
+        selectCountryContainer.find(loader).remove();
     }, function (errorText) {
         countryGroup.remove();
         $('.select-country').append('<p></p>').text(errorText);
@@ -65,7 +70,7 @@ function fillCountryGroup (countryGroup) {
     });
 }
 
-function fillRoomtypeGroup (roomtypeGroup) {
+function fillRoomtypeGroup (roomtypeGroup, selectRoomtypeContainer, loader) {
 
     var i = 0;
 
@@ -82,6 +87,7 @@ function fillRoomtypeGroup (roomtypeGroup) {
 
             i++;
         }
+        selectRoomtypeContainer.find(loader).remove();
     }, function (errorText) {
         roomtypeGroup.remove();
         $('.select-roomtype-col').append('<p></p>').text(errorText);
@@ -109,16 +115,29 @@ function validateFields (button, inputFields) {
     }
 }
 
+function getHotelsBySearch (country, fromDate, toDate, roomtype, success, error) {
+    
+    $.ajax({
+        
+        url: 'app/api/getHotels.php',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            country: country,
+            fromDate: fromDate,
+            toDate: toDate,
+            roomtype: roomtype
+        }
+    }).done(function (response) {
+        if (response.errorCode == 1) {
+            error(response.error);
+            return;
+        }
+        success(response);
+        return;
+    });
 
-
-
-
-
-
-
-
-
-
+}
 
 
 

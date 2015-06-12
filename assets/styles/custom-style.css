@@ -6,6 +6,7 @@ html, body, .front-page, .row, .col-md-3, .col-md-9 {
 body {
     background-color: #fff;
     font-family: 'Open Sans', sans-serif;
+    overflow-y: scroll;
 }
 
 /* NAVBAR */
@@ -319,4 +320,22 @@ body {
     float: right;
     margin: 20px 0 0 0;
     font-weight: 900;
+}
+
+.no-results {
+    text-align: center;
+}
+
+.please-search {
+    text-align: center;
+}
+
+.ajax-loader-gif {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+}
+
+.select-country {
+    text-align: center;
 }

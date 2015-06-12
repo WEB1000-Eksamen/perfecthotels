@@ -17,16 +17,8 @@
                 <div class="row select-query">
                     <div class="col-md-12 text"><strong>Jeg ønsker et hotell i</strong></div>
                     <div class="col-md-12 select-country">
+                        <img class="ajax-loader-gif" alt="Laster inn" src="assets/images/ajax-loader.gif" />
                         <div class="btn-group select-country-group" data-toggle="buttons">
-                            <!--<label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" autocomplete="off" checked> <strong>Norge</strong>
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" autocomplete="off"> <strong>Sverige</strong>
-                            </label>
-                            <label class="btn btn-default">
-                                <input type="radio" name="country" value="Norge" autocomplete="off"> <strong>Danmark</strong>
-                            </label>-->
                         </div>
                     </div>
                 </div>
@@ -74,8 +66,13 @@
             <div class="col-md-12 page-header">
                 <h1>Perfect Hotels Premium</h1>
             </div>
-            <div class="col-md-12">
-                <div class="row  result-container">
+            <div class="col-md-12" id="the-results">
+                <div class="row result-errors">
+                    <div class="col-md-12 please-search">
+                        <h3>Vi kan ikke vise noen resultater enda, vennligst benytt søkeboksen.</h3>
+                    </div>
+                </div>
+                <div class="row hidden result-container">
                     <div class="col-md-12">
                         <div class="row">
                             <div style="background: url(https://placeholdit.imgix.net/~text?txtsize=50&txt=750%C3%97250&w=750&h=250) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>

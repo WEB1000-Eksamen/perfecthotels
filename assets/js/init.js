@@ -2,10 +2,12 @@ $(function () {
     
     /* NAVBAR ICON */
     
-    var navbar      = $('.navbar-left'),
-        iconClose   = $('.navbar-hamburger .glyphicon-remove'),
-        iconOpen    = $('.navbar-hamburger .glyphicon-menu-hamburger'),
-        searchBtn   = $('#searchBtn');
+    var navbar          = $('.navbar-left'),
+        iconClose       = $('.navbar-hamburger .glyphicon-remove'),
+        iconOpen        = $('.navbar-hamburger .glyphicon-menu-hamburger'),
+        searchBtn       = $('#searchBtn'),
+        ajaxLoader      = '.ajax-loader-gif';
+    
     
     // Hide icon by default
     iconOpen.hide();
@@ -82,40 +84,52 @@ $(function () {
         toDate.datepicker('show');
     });
     
-    
     /* MENU AJAX */
-    var countrySelect = $('.select-country-group'),
-        roomtypeSelect = $('.select-roomtype-group'),
-        countrySelectBtn = $('<input type="radio" name="country" value="Norge" id="option1" autocomplete="off" checked> <strong>Norge</strong>'),
-        roomtypeSelectOpt;
+    var countrySelectGroup = $('.select-country-group'),
+        roomtypeSelectGroup = $('.select-roomtype-group');
     
-    fillCountryGroup(countrySelect);
-    fillRoomtypeGroup(roomtypeSelect);
+    fillCountryGroup(countrySelectGroup, $('.select-country'), ajaxLoader);
+    fillRoomtypeGroup(roomtypeSelectGroup, $('.select-roomtype-col'), ajaxLoader);
     
-    var selectRoomtypes = $('.select-roomtype-group'),
-        inputFields = [toDate, fromDate, selectRoomtypes];
+    var inputFields = [toDate, fromDate, roomtypeSelectGroup];
     
     for (input in inputFields) {
         inputFields[input].on('change', function () {
             validateFields(searchBtn, inputFields);
         });
     }
+    
+    searchBtn.on('click', function (evt) {
+        evt.preventDefault();
+        
+        var countryID = $('.select-country-group').find('input[name="country"]:checked').val(),
+            resultContainer = $('#the-results'),
+            errorContainer = $('.result-errors');
+        
+        getHotelsBySearch(countryID, fromDate.val(), toDate.val(), roomtypeSelectGroup.val(), function (data) {
+            
+            // remove eventual old results
+            resultContainer.find('.result-container').remove();
+            // hide errors
+            errorContainer.hide();
+            // fill results to result container
+            fillResults(data, resultContainer, "#resultTmpl");
+            
+            return;
+            
+        }, function (error) {
+            
+            // get rid of old errors
+            errorContainer.find('.please-search').hide();
+            errorContainer.find('.no-results').remove();
+            // get rid of old results
+            resultContainer.find('.result-container').remove();
+            // render errors
+            fillResults({error: error}, errorContainer, "#errorTmpl");
+            errorContainer.show();
+            return;
+            
+        });
+        
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

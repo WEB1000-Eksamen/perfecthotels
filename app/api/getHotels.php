@@ -14,23 +14,25 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     $fromdate = date('Y-m-d', strtotime($fromdate));
     $todate = date('Y-m-d', strtotime($todate));
     
-    $sql = 'SELECT 
+    $sqlC = "SELECT TagText, HotelID FROM hoteltags";
+    $stmtC = $pdo->prepare($sqlC);
+    $stmtC->execute();
+    
+    $sql = 'SELECT DISTINCT
              hotels.HotelName
+            ,hotels.HotelID
             ,hotels.Address
             ,hotels.Description
             ,images.URL
             ,roomtypes.Price
             ,roomtypes.RoomtypeName
-            ,COUNT(hotelroomtypes.HRID) AS AvailableRooms
+            ,COUNT(DISTINCT hotelroomtypes.HRID) AS AvailableRooms
 
         FROM hotelroomtypes
         INNER JOIN hotels ON (
             hotelroomtypes.HotelID = hotels.HotelID
             AND
             hotels.CountryID = ?
-        )
-        INNER JOIN rooms ON (
-            hotelroomtypes.RoomID = rooms.RoomID
         )
         INNER JOIN roomtypes ON (
             hotelroomtypes.RoomtypeID = roomtypes.RoomtypeID
@@ -48,12 +50,10 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
             hotels.ImageID = images.ImageID
         )
         GROUP BY 
-            hotels.HotelName,
-            roomtypes.RoomtypeName
+            hotels.HotelName
         HAVING COUNT(hotelroomtypes.HRID) > 0
-        ORDER BY hotels.HotelName ASC
+        ORDER BY hotels.HotelName ASC, AvailableRooms ASC
     ';
-    
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(
@@ -71,13 +71,24 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $data[] = $row;
         }
+        if ($stmtC->rowCount() > 0) {
+            while ($cat = $stmtC->fetch(PDO::FETCH_ASSOC)) {
+                foreach($data as $idx => $hotel) {
+                    
+                    if ($cat['HotelID'] == $hotel['HotelID']) {
+                        $data[$idx]['HotelTags'][] = $cat['TagText'];
+                    }
+                    
+                }
+            }
+        }
     } else {
-        $data = array('error' => 'No hotels found', 'errorCode' => 1);
+        $data = array('error' => 'Ingen hoteller med ledige rom ble funnet på søket ditt.', 'errorCode' => 1);
     }
     
     echo json_encode($data);
     
 
 } else {
-    echo json_encode(array('error' => 'Not enough parameters', 'errorCode' => 2));
+    echo json_encode(array('error' => 'Ikke nok parametre.', 'errorCode' => 2));
 }

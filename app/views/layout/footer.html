@@ -56,6 +56,64 @@
             </div>
         </div>
     </div>
+
+    <script id="resultTmpl" type="text/x-jsrender">
+        <div class="row result-container">
+            <div class="col-md-12">
+                <div class="row">
+                    <div style="background: url({{:URL}}) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
+                    <div class="col-md-9 result-content">
+                        <div class="row result-header">
+                            <div class="col-md-12">
+                                <h2>
+                                    {{:HotelName}}
+                                </h2>
+                                <p>Ledige rom: <strong>{{:AvailableRooms}}</strong></p>
+                                <div class="clearfix"></div>
+                                <span class="date">Fra: {{:FromDate}} Til: {{:ToDate}}</span>
+                                <span class="address">{{:Address}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="row result-description">
+                            <div class="col-md-9">
+                                <div class="result-body">
+                                    <p>{{:Description}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h2 class="result-price">{{:Price}} NOK</h2>
+                                <p class="result-price-info">pr natt</p>
+                            </div>
+                        </div>
+                        <div class="row result-footer">
+                            <div class="col-md-9 result-categories">
+                                {{if HotelTags}}
+                                <ul>
+                                    {{for HotelTags}}
+                                    <li>{{>#data}}</li>
+                                    {{/for}}
+                                    <div class="clearfix"></div>
+                                </ul>
+                                {{/if}}
+                            </div>
+                            <div class="col-md-3 result-order">
+                                <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="{{:HotelID}}" class="btn btn-primary">
+                                    Velg
+                                </button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script id="errorTmpl" type="text/x-jsrender">
+        <div class="col-md-12 no-results">
+            <h3>{{:error}}</h3>
+        </div>
+    </script>
     
     <script type="text/javascript" src="assets/js/jquery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js"></script>
@@ -63,7 +121,8 @@
     <script type="text/javascript" src="assets/js/jsrender/jsrender.min.js"></script>
     <script type="text/javascript" src="assets/js/moment-with-locales.js/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/menu.js"></script>
-    <script type="text/javascript" src="assets/js/init.js"></script>
+    <script type="text/javascript" src="assets/js/result-helpers.js"></script>
     <script type="text/javascript" src="assets/js/order-modal.js"></script>
+    <script type="text/javascript" src="assets/js/init.js"></script>
 </body>
 </html>
