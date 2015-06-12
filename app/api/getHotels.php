@@ -11,6 +11,9 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     $todate = $_GET['toDate'];
     $roomtype = $_GET['roomtype'];
     
+    $prettyFromDate = date('d. M Y', strtotime($fromdate));
+    $prettyToDate = date('d. M Y', strtotime($todate));
+    
     $fromdate = date('Y-m-d', strtotime($fromdate));
     $todate = date('Y-m-d', strtotime($todate));
     
@@ -26,6 +29,7 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
             ,images.URL
             ,roomtypes.Price
             ,roomtypes.RoomtypeName
+            ,roomtypes.RoomtypeID
             ,COUNT(DISTINCT hotelroomtypes.HRID) AS AvailableRooms
 
         FROM hotelroomtypes
@@ -69,6 +73,8 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     
     if ($stmt->rowCount() > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $row['FromDate'] = $prettyFromDate;
+            $row['ToDate'] = $prettyToDate;
             $data[] = $row;
         }
         if ($stmtC->rowCount() > 0) {

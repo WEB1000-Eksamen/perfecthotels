@@ -102,11 +102,11 @@ $(function () {
     searchBtn.on('click', function (evt) {
         evt.preventDefault();
         
-        var countryID = $('.select-country-group').find('input[name="country"]:checked').val(),
+        var countryID = $('.select-country-group').find('input[name="country"]:checked'),
             resultContainer = $('#the-results'),
             errorContainer = $('.result-errors');
         
-        getHotelsBySearch(countryID, fromDate.val(), toDate.val(), roomtypeSelectGroup.val(), function (data) {
+        getHotelsBySearch(countryID.val(), fromDate.val(), toDate.val(), roomtypeSelectGroup.val(), function (data) {
             
             // remove eventual old results
             resultContainer.find('.result-container').remove();

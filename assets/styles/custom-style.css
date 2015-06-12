@@ -296,9 +296,17 @@ body {
     transform: translateX(-100%);
 }
 
+.order-hotel-user-input {
+    float: right;
+    width: 40%;
+    margin: 7px 0 0 0;
+}
 .order-hotel-user-input input {
-    width: 25%;
     margin-right: 10px;
+    width: 50%;
+}
+.order-hotel-user-input button {
+    margin-bottom: 3px;
 }
 
 #order-hotel-modal-reference {
