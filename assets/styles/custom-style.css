@@ -337,6 +337,9 @@ body {
 .please-search {
     text-align: center;
 }
+.please-search h3 {
+    margin-top: 0;
+}
 
 .ajax-loader-gif {
     width: 16px;
@@ -346,4 +349,12 @@ body {
 
 .select-country {
     text-align: center;
+}
+
+.search-terms {
+    margin-top: 20px;
+    border: 1px solid #eee;
+}
+.search-terms .col-md-4 {
+  padding: 10px 0;
 }

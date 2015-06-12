@@ -6,9 +6,12 @@ $(function () {
         iconClose       = $('.navbar-hamburger .glyphicon-remove'),
         iconOpen        = $('.navbar-hamburger .glyphicon-menu-hamburger'),
         searchBtn       = $('#searchBtn'),
-        ajaxLoader      = '.ajax-loader-gif';
+        ajaxLoader      = '.ajax-loader-gif',
+        searchTerms     = $('.search-terms');
     
     
+    // Hide search terms by default
+    searchTerms.hide();
     // Hide icon by default
     iconOpen.hide();
     
@@ -105,6 +108,19 @@ $(function () {
         var countryID = $('.select-country-group').find('input[name="country"]:checked'),
             resultContainer = $('#the-results'),
             errorContainer = $('.result-errors');
+        
+        // define search term values
+        var searchTermCountry = countryID.next('strong').text(),
+            searchTermFrom = fromDate.val(),
+            searchTermTo = toDate.val(),
+            searchTermRoomtype = $('.select-roomtype-group option:selected').text();
+        
+        searchTerms.show();
+        
+        searchTerms.find('#search-term-country').text(searchTermCountry);
+        searchTerms.find('#search-term-fromdate').text(searchTermFrom);
+        searchTerms.find('#search-term-todate').text(searchTermTo);
+        searchTerms.find('#search-term-roomtype').text(searchTermRoomtype);
         
         getHotelsBySearch(countryID.val(), fromDate.val(), toDate.val(), roomtypeSelectGroup.val(), function (data) {
             

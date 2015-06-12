@@ -17,6 +17,7 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     $fromdate = date('Y-m-d', strtotime($fromdate));
     $todate = date('Y-m-d', strtotime($todate));
     
+    // Get all categories for extending rows
     $sqlC = "SELECT TagText, HotelID FROM hoteltags";
     $stmtC = $pdo->prepare($sqlC);
     $stmtC->execute();
@@ -77,10 +78,12 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
             $row['ToDate'] = $prettyToDate;
             $data[] = $row;
         }
+        // give each hotel their correct tags
         if ($stmtC->rowCount() > 0) {
             while ($cat = $stmtC->fetch(PDO::FETCH_ASSOC)) {
                 foreach($data as $idx => $hotel) {
                     
+                    // simple search on hotelid to add the tag to each relevant hotel
                     if ($cat['HotelID'] == $hotel['HotelID']) {
                         $data[$idx]['HotelTags'][] = $cat['TagText'];
                     }

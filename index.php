@@ -67,58 +67,14 @@
                 <h1>Perfect Hotels Premium</h1>
             </div>
             <div class="col-md-12" id="the-results">
+                <div class="row search-terms">
+                    <div class="col-md-4 col-xs-4 text-center">Land: <strong id="search-term-country">Norge</strong></div>
+                    <div class="col-md-4 col-xs-4 text-center">Dato: <strong><span id="search-term-fromdate">10 Jun 2015</span> - <span id="search-term-todate">13 Jun 2015</span></strong></div>
+                    <div class="col-md-4 col-xs-4 text-center">Romtype: <strong id="search-term-roomtype">Suite</strong></div>
+                </div>
                 <div class="row result-errors">
                     <div class="col-md-12 please-search">
-                        <h3>Vi kan ikke vise noen resultater enda, vennligst benytt søkeboksen.</h3>
-                    </div>
-                </div>
-                <div class="row hidden result-container">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div style="background: url(https://placeholdit.imgix.net/~text?txtsize=50&txt=750%C3%97250&w=750&h=250) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
-                            <div class="col-md-9 result-content">
-                                <div class="row result-header">
-                                    <div class="col-md-12">
-                                        <h2>
-                                            The Overlook Hotel
-                                        </h2>
-                                        <p>Ledige rom: <strong>9</strong></p>
-                                        <div class="clearfix"></div>
-                                        <span class="date">Fra: 07 Juni 2015 Til: 08 Juni 2015</span>
-                                        <span class="address">Raveien 227 A, 3084 Borre</span>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="row result-description">
-                                    <div class="col-md-9">
-                                        <div class="result-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus venenatis lorem nec faucibus. Nam dapibus mattis purus, non egestas leo. Suspendisse purus purus, mattis id ligula id, posuere eleifend nulla. Etiam vehicula mattis laoreet. Aliquam erat volutpat. Quisque efficitur vulputate magna, eget lobortis tortor suscipit a. Ut eu imperdiet libero. Etiam mollis consectetur posuere. Duis feugiat imperdiet purus, sed malesuada nisl rhoncus accumsan. Etiam condimentum est sit amet tincidunt lobortis. Mauris consequat tempor libero. Donec facilisis leo eu lectus finibus egestas. Maecenas ut ipsum arcu. Suspendisse sed maximus sapien, id dignissim tortor. Vivamus volutpat, ex nec maximus pretium, odio lorem tempus erat, a gravida est turpis id enim.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h2 class="result-price">1 000 NOK</h2>
-                                        <p class="result-price-info">pr natt, pr pers</p>
-                                    </div>
-                                </div>
-                                <div class="row result-footer">
-                                    <div class="col-md-9 result-categories">
-                                        <ul>
-                                            <li>Kort vei til sentrum</li>
-                                            <li>Svømmebasseng</li>
-                                            <li>Morgen- og kveldsbuffé</li>
-                                            <li>Ca. 12 meter til nærmeste bar</li>
-                                            <div class="clearfix"></div>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3 result-order">
-                                        <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="" class="btn btn-primary">
-                                            Velg
-                                        </button>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h3>Vennligst velg hotell med søkeboksen til venstre.</h3>
                     </div>
                 </div>
             </div>
