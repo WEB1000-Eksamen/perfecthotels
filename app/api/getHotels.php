@@ -11,8 +11,8 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     $todate = $_GET['toDate'];
     $roomtype = $_GET['roomtype'];
     
-    $prettyFromDate = date('d. M Y', strtotime($fromdate));
-    $prettyToDate = date('d. M Y', strtotime($todate));
+    $prettyFromDate = date('d M Y', strtotime($fromdate));
+    $prettyToDate = date('d M Y', strtotime($todate));
     
     $fromdate = date('Y-m-d', strtotime($fromdate));
     $todate = date('Y-m-d', strtotime($todate));
@@ -76,6 +76,7 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $row['FromDate'] = $prettyFromDate;
             $row['ToDate'] = $prettyToDate;
+            $row['Price'] = number_format($row['Price'], 0, '', ' ');
             $data[] = $row;
         }
         // give each hotel their correct tags

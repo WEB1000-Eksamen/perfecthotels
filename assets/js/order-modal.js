@@ -1,29 +1,69 @@
 $(function () {
+    
+    // Open modal button logic
+    var orderBtnParent = $('#the-results'),
+        // get main parent for close actions
+        orderModalMainParent = $('#order-hotel-modal'),
+        modalContainer = orderModalMainParent.find('.modal-content');
+    
+    orderBtnParent.on('click', '.order-hotel-choice', function () {
+        
+        var hotelID     = $(this).data('hotelId'),
+            roomtypeID  = $(this).data('roomtypeId'),
+            fromDate    = $(this).data('fromDate'),
+            toDate      = $(this).data('toDate');
+        
+        getModalInfo(hotelID, roomtypeID, function (data) {
+            
+            data.FromDate = fromDate;
+            data.ToDate = toDate;
+            
+            modalContainer.find('.ajax-loader-container').hide();
+            
+            fillResults(data, modalContainer, '#orderModalTmpl');
 
-    var orderBtn = $('#order-hotel-button'),
-        containerToUpdate = $('.modal-content'),
-        userInput = $('.order-hotel-user-input input'),
-        emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-        userInputDiv = $('.order-hotel-user-input'),
-        userCloseDiv = $('.order-hotel-user-close');
+            var orderBtn = modalContainer.find('#order-hotel-button'),
+                userInput = modalContainer.find('.order-hotel-user-input input'),
+                emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                userInputDiv = modalContainer.find('.order-hotel-user-input'),
+                userCloseDiv = modalContainer.find('.order-hotel-user-close');
+
+            orderBtn.attr('disabled', true);
+
+            userInput.keyup(function (evt) {
+                if (emailRegex.test( evt.target.value )) {
+                    orderBtn.attr('disabled', false);
+                    return;
+                }
+                orderBtn.attr('disabled', true);
+            });
+
+            orderBtn.on('click', function () {
+                modalContainer.addClass('order');
+                userInputDiv.removeClass('show');
+                userInputDiv.addClass('hidden');
+                userCloseDiv.removeClass('hidden');
+                userCloseDiv.addClass('show');
+            });
+            
+        }, function (data) {
+            
+            fillResults(data, modalContainer, '#orderModalErrorTmpl');
+            
+        });
+        
+    });
     
-    
-    orderBtn.attr('disabled', true);
-    
-    userInput.keyup(function (evt) {
-        if (emailRegex.test( evt.target.value )) {
-            orderBtn.attr('disabled', false);
-            return;
+    modalContainer.on('click', '.close', function () {
+        modalContainer.empty();
+        modalContainer.find('.ajax-loader-container').hide();
+        
+        if (modalContainer.hasClass('order')) {
+            modalContainer.removeClass('order');
         }
-        orderBtn.attr('disabled', true);
-    });
+        
+        orderModalMainParent.modal('hide');
+        return;
     
-    orderBtn.on('click', function () {
-        containerToUpdate.addClass('order');
-        userInputDiv.removeClass('show');
-        userInputDiv.addClass('hidden');
-        userCloseDiv.removeClass('hidden');
-        userCloseDiv.addClass('show');
     });
-
 });

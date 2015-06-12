@@ -1,7 +1,10 @@
 
-    <div data-backdrop="static" class="modal fade" id="order-hotel-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div data-backdrop="static" data-keyboard="false" class="modal fade" id="order-hotel-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
+                <div class="ajax-loader-container">
+                    <img class="ajax-loader-big" alt="Laster inn" src="assets/images/ajax-loader-big.gif">
+                </div>
             </div>
         </div>
     </div>
@@ -47,7 +50,7 @@
                                 {{/if}}
                             </div>
                             <div class="col-md-3 result-order">
-                                <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" class="btn btn-primary">
+                                <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" data-from-date="{{:FromDate}}" data-to-date="{{:ToDate}}" class="btn btn-primary order-hotel-choice">
                                     Velg
                                 </button>
                                 <div class="clearfix"></div>
@@ -70,6 +73,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             <h2>{{:HotelName}}</h2>
+            <p class="modal-hotel-roomtype">{{:RoomtypeName}}</p>
         </div>
         <div class="modal-body order-hotel-modal-container">
             <div class="step1">
@@ -95,26 +99,40 @@
             <div class="step2">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Du har bestilt en Suite i {{:HotelName}}.</p>
+                        <p>Du har bestilt en Suite på {{:HotelName}}.</p>
                     </div>
                     <div class="col-md-12" id="order-hotel-modal-reference">
                         <p class="order-hotel-modal-reference-info">Vennligst bruk denne referansen når du skal sjekke inn</p>
-                        <p id="reference-number">AGH445J</p>
+                        <p id="reference-number"></p>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="modal-footer">
-            <p id="modal-hotel-price">{{:Price}}</p>
+            <p id="modal-hotel-price">{{:Price}} NOK</p>
             <div class="order-hotel-user-input show">
-                <button class="btn btn-primary" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" data-booking-from="{{:FromDate}}" data-booking-to="{{:ToDate}}" id="order-hotel-button">Bestill</button>
                 <input type="email" class="form-control" placeholder="E-post" />
+                <button class="btn btn-primary" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" data-booking-from="{{:FromDate}}" data-booking-to="{{:ToDate}}" id="order-hotel-button">Bestill</button>
             </div>
             <div class="order-hotel-user-close hidden">
                 <button class="btn btn-primary pull-right" data-dismiss="modal" aria-label="Close">Lukk</button>
             </div>
             <div class="clearfix"></div>
+        </div>
+    </script>
+    <script id="orderModalErrorTmpl" type="text/x-jsrender">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Det skjedde en feil!</h2>
+        </div>
+        <div class="modal-body order-modal-error">
+            <p>{{:error}}</p>
+        </div>
+        <div class="modal-footer">
+            <p class="text-muted">Feilkode: {{:errorCode}}</p>
         </div>
     </script>
 
@@ -126,6 +144,7 @@
     <script type="text/javascript" src="assets/js/moment-with-locales.js/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/menu.js"></script>
     <script type="text/javascript" src="assets/js/result-helpers.js"></script>
+    <script type="text/javascript" src="assets/js/modal-helpers.js"></script>
     <script type="text/javascript" src="assets/js/order-modal.js"></script>
     <script type="text/javascript" src="assets/js/init.js"></script>
 </body>

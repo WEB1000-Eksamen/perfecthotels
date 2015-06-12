@@ -131,6 +131,11 @@ body {
     border-radius: 0;
     
 }
+.ajax-loader-gif {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+}
 
 /* RESULTS */
 
@@ -149,6 +154,30 @@ body {
     font-weight: 300;
     color: #000;
 }
+
+.no-results {
+    text-align: center;
+}
+
+.please-search {
+    text-align: center;
+}
+.please-search h3 {
+    margin-top: 0;
+}
+
+.select-country {
+    text-align: center;
+}
+
+.search-terms {
+    margin-top: 20px;
+    border: 1px solid #eee;
+}
+.search-terms .col-md-4 {
+  padding: 10px 0;
+}
+
 #results 
 .result-image {
     background: #fff;
@@ -254,6 +283,10 @@ body {
 
 /* ORDER MODAL */
 
+.modal-header {
+    border: none;
+}
+
 #modal-hotel-price {
     float: left;
     font-size: 30px;
@@ -296,6 +329,11 @@ body {
     transform: translateX(-100%);
 }
 
+.modal-hotel-roomtype {
+    margin: 0;
+    padding: 0;
+}
+
 .order-hotel-user-input {
     float: right;
     width: 40%;
@@ -304,9 +342,41 @@ body {
 .order-hotel-user-input input {
     margin-right: 10px;
     width: 50%;
+    display: inline;
 }
 .order-hotel-user-input button {
     margin-bottom: 3px;
+}
+
+.order-hotel-user-close {
+    margin: 7px 0 0 0;
+}
+/* reset bootstrap styling for close buttons */
+order-hotel-user-close button.close {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    opacity: 1;
+    text-shadow: initial;
 }
 
 #order-hotel-modal-reference {
@@ -330,31 +400,7 @@ body {
     font-weight: 900;
 }
 
-.no-results {
+.ajax-loader-container {
     text-align: center;
-}
-
-.please-search {
-    text-align: center;
-}
-.please-search h3 {
-    margin-top: 0;
-}
-
-.ajax-loader-gif {
-    width: 16px;
-    height: 16px;
-    margin: 0 auto;
-}
-
-.select-country {
-    text-align: center;
-}
-
-.search-terms {
-    margin-top: 20px;
-    border: 1px solid #eee;
-}
-.search-terms .col-md-4 {
-  padding: 10px 0;
+    padding: 30px 0;
 }
