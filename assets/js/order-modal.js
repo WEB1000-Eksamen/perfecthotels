@@ -39,11 +39,29 @@ $(function () {
             });
 
             orderBtn.on('click', function () {
+                
+                var email = userInput.val();
+                
+                orderRoom(hotelID, roomtypeID, email, fromDate, toDate, function (success) {
+                    
+                    modalContainer.find('#reference-number').text(success.Reference);
+                    
+                }, function (error) {
+                    console.log('error');
+                    var errorText = $('<p></p>');
+                    errorText.text(error.error + ' (' + error.errorCode + ')');
+                    
+                    modalContainer.find('#order-hotel-modal-success').empty();
+                    modalContainer.find('#order-hotel-modal-reference').empty().append(errorText);
+                    
+                });
+
                 modalContainer.addClass('order');
                 userInputDiv.removeClass('show');
                 userInputDiv.addClass('hidden');
                 userCloseDiv.removeClass('hidden');
                 userCloseDiv.addClass('show');
+                
             });
             
         }, function (data) {

@@ -25,9 +25,9 @@ class PostBookingFns {
                 hotelroomtypes.HRID NOT IN (
                     SELECT HRID FROM bookings
                     WHERE
-                    From BETWEEN ? AND ?
+                    bookings.`From` BETWEEN ? AND ?
                     OR
-                    To BETWEEN ? AND ?
+                    bookings.`To` BETWEEN ? AND ?
                 )
                 AND
                 hotelroomtypes.HotelID = ?
@@ -47,9 +47,12 @@ class PostBookingFns {
             $RoomtypeID
         ));
         
-        $HRID = $stmt->fetch(PDO::FETCH_ASSOC)
+        $HRID = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        return intval($HRID['HRID'], 10);
+        if ($stmt->rowCount() > 0) {
+            return intval($HRID['HRID'], 10);
+        }
+        return false;
     }
     
     private function getOrderID ($Email, $Hash) {
@@ -90,28 +93,33 @@ class PostBookingFns {
     public function insertOrderBooking ($HotelID, $RoomtypeID, $FromDate, $ToDate, $Email, $Hash) {
         
         $HRID = $this->getAvailableHRID($HotelID, $RoomtypeID, $FromDate, $ToDate);
+        
+        if (!$HRID) {
+            return array('error' => 'Beklager, det siste rommet ble nettopp booket!', 'errorCode' => 1);
+        }
+        
         $OrderID = $this->getOrderID($Email, $Hash);
         
         $sql = "
             INSERT INTO bookings
-            (From, To, HRID, OrderID)
+            (`From`, `To`, HRID, OrderID)
             VALUES
             (?, ?, ?, ?)
         ";
         
         $stmt = $this->database->prepare($sql);
-        $stmt->execute(
+        $stmt->execute(array(
             $FromDate,
             $ToDate,
             $HRID,
             $OrderID
-        );
+        ));
         
         if ($stmt->rowCount() > 0) {
             return array('Reference' => $Hash);
         }
         
-        return array('error' => 'Det skjedde en feil med bookingen, vennligst prøv igjen.');
+        return array('error' => 'Det skjedde en feil med bookingen, vennligst prøv igjen.', 'errorCode' => $stmt->errorCode());
         
     }
 

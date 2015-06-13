@@ -14,7 +14,6 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
     $FromDate   = $_POST['FromDate'];
     $ToDate     = $_POST['ToDate'];
     $Email      = $_POST['Email'];
-    $Hash       = Hash::make($Email);
     
     $FromDate = date('Y-m-d', strtotime($FromDate));
     $ToDate = date('Y-m-d', strtotime($ToDate));
@@ -48,10 +47,13 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
         exit();
     }
     
+    $Hash = Hash::make($Email);
+    
     // return the Reference
     $bookingHelpers = new PostBookingFns($pdo);
-    $bookingHelpers->insertOrderBooking($HotelID, $RoomtypeID, $FromDate, $ToDate, $Email, $Hash);
+    $response = $bookingHelpers->insertOrderBooking($HotelID, $RoomtypeID, $FromDate, $ToDate, $Email, $Hash);
     
+    echo json_encode($response);
 }
 
 
