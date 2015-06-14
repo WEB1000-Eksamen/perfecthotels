@@ -27,10 +27,13 @@ $(function () {
             
             getBookingsFromReference(userInput.val(), function (data) {
                 editBookingsModalContainer.find('.step2 .ajax-loader-container').hide();
-                fillResults(data, editBookingsModalContainer.find('.step2 .results-table'), '#orderModalStep2Tmpl');
-            }, function (error) {
-                editBookingsModalContainer.find('.step2 .ajax-loader-container').hide();
-                fillResults(error, editBookingsModalContainer.find('.step2'), '#orderModalStep2ErrorTmpl');
+                fillBookingAPIResults(
+                    data,
+                    $('.edit-bookings-modal-step2-table-container'),
+                    $('.edit-bookings-modal-step2-table'),
+                    $('.edit-bookings-modal-step2-number-of-bookings'),
+                    $('.edit-bookings-modal-step2-error')
+                );
             });
             
         });
@@ -48,8 +51,10 @@ $(function () {
             userInput.val('');
             editBtn.attr('disabled', true);
             
-            editBookingsModalContainer.find('.step2 .row').remove();
-            editBookingsModalContainer.find('.step2 .ajax-loader-container').show();
+            $('.edit-bookings-modal-step2-table').empty();
+            $('.edit-bookings-modal-step2-table-container').hide();
+            $('.edit-bookings-modal-step2-error').empty().hide();
+            $('.step2 .ajax-loader-container').show();
             
             editBookingModal.modal('hide');
             return;
@@ -65,8 +70,12 @@ $(function () {
             userInput.val('');
             editBtn.attr('disabled', true);
             
-            editBookingsModalContainer.find('.step2 .row').remove();
-            editBookingsModalContainer.find('.step2 .ajax-loader-container').show();
+            $('.edit-bookings-modal-step2-table').empty();
+            $('.edit-bookings-modal-step2-table-container').hide();
+            $('.edit-bookings-modal-step2-error').empty().hide();
+            $('.step2 .ajax-loader-container').show();
+            
+            return;
         });
     });
 });
