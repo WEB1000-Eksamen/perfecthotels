@@ -79,6 +79,7 @@ p {
 .navbar-left-menu li a {
     padding: 20px 8px;
     color: #fff;
+    cursor: pointer;
     font-weight: 700;
 }
 .navbar-left-menu li a:hover,
@@ -459,6 +460,8 @@ div.tooltip-inner {
 .table-striped>tbody>tr.bg-delete-error {
     background-color: #f2dede;
 };
+
+
 
 input.hasDatepicker {
     cursor: pointer;

@@ -1,12 +1,12 @@
-<h1>Documentation for client-side libraries and server-side libraries</h1>
+<h1>Hvilke klientsiderammeverk/bibliotek vi bruker</h1>
 
-<h2>Client-side Libraries</h2>
+<h2>Klientside Biblioteker</h2>
 
 - jQuery 1.11.3
 - jQuery-UI 1.11.4
 - jQuery-tmpl
 - Bootstrap 3.3.4
 
-<h2>Server-side Libraries</h2>
+<h2>Serverside Biblioteker</h2>
 
-- None yet
+- Ingen

@@ -136,6 +136,8 @@ $(function () {
             
             if (navbar.hasClass('active')) {
                 navbar.removeClass('active');
+                iconClose.hide();
+                iconOpen.fadeIn();
             }
             
             return;

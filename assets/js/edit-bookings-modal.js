@@ -37,6 +37,25 @@ function deleteBookingByID (bookingid, success, error) {
     });
 }
 
+function editBookingByID (bookingid, fromdate, todate, success, error) {
+    $.ajax({
+        url: 'app/api/editBooking.php',
+        method: 'POST',
+        data: {
+            BookingID: bookingid,
+            FromDate: fromdate,
+            ToDate: todate
+        }
+    }).done(function (result) {
+        if (result.error) {
+            error(result);
+            return;
+        }
+        success(result);
+        return;
+    });
+}
+
 function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
     editBookingsModalContainer.addClass('edit');
     editBookingModal.find('.edit-bookings-modal-go-back').show();
@@ -51,11 +70,40 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
             $('.edit-bookings-modal-step2-error')
         );
         
-        var bookingsBtn = editBookingsModalContainer.find('.btn-delete-booking');
+        var delBookingsBtn = editBookingsModalContainer.find('.btn-delete-booking'),
+            editBookingsBtn = editBookingsModalContainer.find('.btn-update-booking');
         
-        bookingsBtn.on('click', function () {
+        editBookingsBtn.on('click', function () {
+            var row = $(this).closest('tr'),
+                dates = row.find('input'),
+                fromDate = row.find(dates[0]),
+                toDate = row.find(dates[1]),
+                bookingId = $(this).data('bookingId');
+            
+            
+            editBookingByID(bookingId, fromDate.val(), toDate.val(), function (success) {
+                row.css('background-color', '#d9edf7');
+                
+                setTimeout(function () {
+                    row.removeAttr('style');
+                }, 1000);
+                
+            },function (error) {
+                
+                alert(error.error);
+                
+                row.addClass('bg-delete-error');
+                
+                setTimeout(function () {
+                    row.removeClass('bg-delete-error');
+                }, 1000);
+            });
+        });
+        
+        
+        delBookingsBtn.on('click', function () {
             var bookingID = $(this).data('bookingId'),
-                bookingButton = $(this),
+                delBookingButton = $(this),
                 confString = 'Er du sikker på at du vil slette bookingen?',
                 conf = confirm(confString);
             
@@ -67,18 +115,16 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
                     
                     numberOfBookings = numberOfBookings - 1;
                     
-                    bookingButton.closest('tr').addClass('bg-delete-error');
-                    bookingButton.closest('tr').fadeOut('slow');
+                    delBookingButton.closest('tr').addClass('bg-delete-error');
+                    delBookingButton.closest('tr').fadeOut('slow');
                     
                     numberOfBookingsEl.text(numberOfBookings--);
                     
-                    console.log(numberOfBookings);
-                    
                 }, function (error) {
                     alert(error.error);
-                    bookingButton.closest('tr').addClass('bg-delete-error');
+                    delBookingButton.closest('tr').addClass('bg-delete-error');
                     setTimeout(function () {
-                        bookingButton.closest('tr').removeClass('bg-delete-error');
+                        delBookingButton.closest('tr').removeClass('bg-delete-error');
                     }, 500);
                 });
             }
