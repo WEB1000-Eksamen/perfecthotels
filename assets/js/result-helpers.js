@@ -4,3 +4,10 @@ function fillResults (data, resultContainer, template) {
     
     resultContainer.append(html);
 }
+
+function fillResultsNoData (resultContainer, template) {
+    var resultTmpl = $.templates(template),
+        html = resultTmpl.render();
+    
+    resultContainer.append(html);
+}

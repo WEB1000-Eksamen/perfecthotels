@@ -1,0 +1,56 @@
+<script id="orderModalTmpl" type="text/x-jsrender">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h2>{{:HotelName}}</h2>
+        <p class="modal-hotel-roomtype">{{:RoomtypeName}}</p>
+    </div>
+    <div class="modal-body order-hotel-modal-container">
+        <div class="step1">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class=""></div>
+                </div>
+
+                <div class="col-md-12 modal-hotel-image" style="height: 250px; background: url({{:URL}}) no-repeat center; background-size: cover;"></div>
+                <div class="col-md-12">
+                    <div>
+                        <p id="modal-hotel-address">{{:Address}}</p>
+                        <p id="modal-hotel-country">{{:CountryName}}</p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <h3>Info</h3>
+                    <p id="modal-hotel-description">{{:Description}}</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="step2">
+            <div class="row">
+                <div class="col-md-12" id="order-hotel-modal-success">
+                    <p>Du har bestilt en Suite på {{:HotelName}}.</p>
+                </div>
+                <div class="col-md-12" id="order-hotel-modal-reference">
+                    <p class="order-hotel-modal-reference-info">Vennligst bruk denne referansen når du skal sjekke inn</p>
+                    <p id="reference-number">
+                        <img src="assets/images/ajax-loader.gif" />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <p id="modal-hotel-price">{{:Price}} NOK</p>
+        <div class="order-hotel-user-input show">
+            <input type="email" class="form-control" placeholder="E-post" />
+            <button class="btn btn-primary" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" data-booking-from="{{:FromDate}}" data-booking-to="{{:ToDate}}" id="order-hotel-button">Bestill</button>
+        </div>
+        <div class="order-hotel-user-close hidden">
+            <button class="btn btn-primary close pull-right" data-dismiss="modal" aria-label="Close">Lukk</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>

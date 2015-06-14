@@ -1,0 +1,36 @@
+<script id="orderModalStep2Tmpl" type="text/x-jsrender">
+<div class="row">
+    <div class="col-md-12">
+        <p>Her kan du endre dine bookings.</p>
+        <p>Du har booket {{:NumberOfBookings}} gang(er).</p>
+    </div>
+    <div class="col-md-12 modal-bookings-table">
+        <table class="table table-striped">
+            <thead>
+                <th>Hotell</th>
+                <th>Type rom</th>
+                <th>Fra</th>
+                <th>Til</th>
+            </thead>
+            <tbody>
+                {{for Bookings}}
+                <tr>
+                    <td>{{:HotelName}}</td>
+                    <td>{{:RoomtypeName}}</td>
+                    <td>{{:From}}</td>
+                    <td>{{:To}}</td>
+                </tr>
+                {{/for}}
+            </tbody>
+        </table>
+</div>
+</div>
+</script>
+
+<script id="orderModalStep2ErrorTmpl" type="text/x-jsrender">
+<div class="row">
+    <div class="col-md-12">
+        <p>{{:error}}</p>
+    </div>
+</div>
+</script>

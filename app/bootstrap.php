@@ -12,3 +12,4 @@
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Hash.php';
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Database.php';
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'PostBookingFn.php';
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'GetBookingsFn.php';

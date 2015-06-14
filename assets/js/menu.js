@@ -42,27 +42,16 @@ function fillCountryGroup (countryGroup, selectCountryContainer, loader) {
         for (countryIndex in countries) {
 
             var country = countries[countryIndex],
-                buttonLabel = $('<label></label>').addClass('btn').addClass('btn-default'),
-                button = $('<input>').attr({
-                    type: 'radio',
-                    name: 'country',
-                    autocomplete: 'off'
-                }).val(country.CountryID),
-                buttonText = $('<strong>').text(country.CountryName);
-            
-            button.addClass('select-country-radio');
-            
-            if (i === 0) {
-                button.prop('checked', true);
-                buttonLabel.addClass('active');
-            }
+                option = $('<option>').text(
+                    country.CountryName
+                ).val(country.CountryID);
 
-            var entireButton = buttonLabel.append(button).append(buttonText);
-            countryGroup.append(entireButton);
+            countryGroup.append(option);
 
             i++;
         }
         selectCountryContainer.find(loader).remove();
+        countryGroup.show();
     }, function (errorText) {
         countryGroup.remove();
         $('.select-country').append('<p></p>').text(errorText);
@@ -88,6 +77,7 @@ function fillRoomtypeGroup (roomtypeGroup, selectRoomtypeContainer, loader) {
             i++;
         }
         selectRoomtypeContainer.find(loader).remove();
+        roomtypeGroup.show();
     }, function (errorText) {
         roomtypeGroup.remove();
         $('.select-roomtype-col').append('<p></p>').text(errorText);

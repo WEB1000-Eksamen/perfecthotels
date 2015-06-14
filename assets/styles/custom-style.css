@@ -9,6 +9,10 @@ body {
     overflow-y: scroll;
 }
 
+p {
+    font-weight: 700;
+}
+
 /* NAVBAR */
 .navbar-left {
     position: fixed;
@@ -299,12 +303,30 @@ body {
     margin: 20px 0 0 0;
 }
 
-.order-hotel-modal-container {
+.order-hotel-modal-container,
+.edit-bookings-modal-container {
     width: 200%;
     padding: 15px  0 0 0;
 }
 
-.step1, .step2 {
+#edit-bookings-modal-step1-container {
+    padding: 10px 20px;
+    background-color: #B81818;
+    color: #fff;
+}
+
+.modal-bookings-submit {
+    margin: 10px 0 0 0;
+}
+
+div.tooltip-inner {
+    max-width: 200px;
+    padding: 20px;
+    font-size: 16px;
+}
+
+.step1,
+.step2 {
     width: 50%;
     float: left;
     -webkit-transition: -webkit-transform 0.5s ease;
@@ -312,7 +334,8 @@ body {
     -o-transition: -o-transform 0.5s ease;
     transition: transform .5s ease;
 }
-.step1 .row, .step2 .row {
+.step1 .row,
+.step2 .row {
     margin: 0;
     padding: 0;
 }
@@ -321,7 +344,10 @@ body {
     overflow: hidden;
 }
 
-.order .step1, .order .step2 {
+.order .step1,
+.order .step2,
+.edit .step1,
+.edit .step2 {
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
     -o-transform: translateX(-100%);
@@ -403,4 +429,8 @@ body {
 .ajax-loader-container {
     text-align: center;
     padding: 30px 0;
+}
+
+.select-roomtype-col {
+    text-align: center;
 }

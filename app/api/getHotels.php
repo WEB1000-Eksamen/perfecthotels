@@ -33,23 +33,22 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
             ,roomtypes.RoomtypeID
             ,COUNT(DISTINCT hotelroomtypes.HRID) AS AvailableRooms
 
-        FROM hotelroomtypes
-        INNER JOIN hotels ON (
+        FROM hotels
+        INNER JOIN hotelroomtypes ON (
             hotelroomtypes.HotelID = hotels.HotelID
             AND
             hotels.CountryID = ?
-        )
-        INNER JOIN roomtypes ON (
-            hotelroomtypes.RoomtypeID = roomtypes.RoomtypeID
             AND
-            roomtypes.RoomtypeID = ?
-        )
-        INNER JOIN bookings ON (
             hotelroomtypes.HRID NOT IN (
                 SELECT HRID FROM bookings
                 WHERE bookings.From BETWEEN ? and ?
                 OR bookings.To BETWEEN ? and ?
             )
+        )
+        INNER JOIN roomtypes ON (
+            hotelroomtypes.RoomtypeID = roomtypes.RoomtypeID
+            AND
+            roomtypes.RoomtypeID = ?
         )
         INNER JOIN images ON (
             hotels.ImageID = images.ImageID
@@ -63,11 +62,11 @@ if (isset($_GET['country'], $_GET['fromDate'], $_GET['toDate'], $_GET['roomtype'
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(
         $country,
-        $roomtype,
         $fromdate,
         $todate,
         $fromdate,
-        $todate
+        $todate,
+        $roomtype
     ));
     
     header('Content-Type: application/json');

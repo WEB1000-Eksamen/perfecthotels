@@ -21,19 +21,18 @@ class PostBookingFns {
             SELECT
                 hotelroomtypes.HRID
             FROM hotelroomtypes
-            INNER JOIN bookings ON (
-                hotelroomtypes.HRID NOT IN (
-                    SELECT HRID FROM bookings
-                    WHERE
-                    bookings.`From` BETWEEN ? AND ?
-                    OR
-                    bookings.`To` BETWEEN ? AND ?
-                )
-                AND
-                hotelroomtypes.HotelID = ?
-                AND
-                hotelroomtypes.RoomtypeID = ?
+            WHERE
+            hotelroomtypes.HRID NOT IN (
+                SELECT HRID FROM bookings
+                WHERE
+                bookings.`From` BETWEEN ? AND ?
+                OR
+                bookings.`To` BETWEEN ? AND ?
             )
+            AND
+            hotelroomtypes.HotelID = ?
+            AND
+            hotelroomtypes.RoomtypeID = ?
             LIMIT 1
         ";
         

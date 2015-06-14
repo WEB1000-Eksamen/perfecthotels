@@ -59,10 +59,7 @@ $(function () {
             }
         }, options),
         toDateOptions = $.extend(true, {
-            minDate: tomorrow.toDate(),
-            onClose: function (selectedDate) {
-                fromDate.datepicker("option", "maxDate", selectedDate);
-            }
+            minDate: tomorrow.toDate()
         }, options);
     
     fromDate.datepicker(fromDateOptions);
@@ -105,16 +102,19 @@ $(function () {
     searchBtn.on('click', function (evt) {
         evt.preventDefault();
         
-        var countryID = $('.select-country-group').find('input[name="country"]:checked'),
+        $('.page-header').find('.ajax-loader-gif').show();
+        
+        var countryID = $('.select-country-group'),
             resultContainer = $('#the-results'),
             errorContainer = $('.result-errors');
         
         // define search term values
-        var searchTermCountry = countryID.next('strong').text(),
+        var searchTermCountry = $('.select-country-group option:selected').text(),
             searchTermFrom = fromDate.val(),
             searchTermTo = toDate.val(),
             searchTermRoomtype = $('.select-roomtype-group option:selected').text();
         
+        errorContainer.hide();
         searchTerms.show();
         
         searchTerms.find('#search-term-country').text(searchTermCountry);
@@ -126,10 +126,11 @@ $(function () {
             
             // remove eventual old results
             resultContainer.find('.result-container').remove();
-            // hide errors
-            errorContainer.hide();
+            
             // fill results to result container
             fillResults(data, resultContainer, "#resultTmpl");
+            
+            $('.page-header').find('.ajax-loader-gif').hide();
             
             return;
             
@@ -143,6 +144,9 @@ $(function () {
             // render errors
             fillResults({error: error}, errorContainer, "#errorTmpl");
             errorContainer.show();
+            
+            $('.page-header').find('.ajax-loader-gif').hide();
+            
             return;
             
         });

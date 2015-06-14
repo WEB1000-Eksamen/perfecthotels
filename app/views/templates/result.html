@@ -1,0 +1,52 @@
+<script id="resultTmpl" type="text/x-jsrender">
+    <div class="row result-container">
+        <div class="col-md-12">
+            <div class="row">
+                <div style="background: url({{:URL}}) no-repeat center; background-size: cover;" class="col-md-3 result-image"></div>
+                <div class="col-md-9 result-content">
+                    <div class="row result-header">
+                        <div class="col-md-12">
+                            <h2>
+                                {{:HotelName}}
+                            </h2>
+                            <p>Ledige rom: <strong>{{:AvailableRooms}}</strong></p>
+                            <div class="clearfix"></div>
+                            <span class="date">Dato: <strong>{{:FromDate}}</strong>-<strong>{{:ToDate}}</strong></span>
+                            <span class="address">{{:Address}}</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="row result-description">
+                        <div class="col-md-9">
+                            <div class="result-body">
+                                <p>{{:Description}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h2 class="result-price">{{:Price}} NOK</h2>
+                            <p class="result-price-info">pr natt</p>
+                        </div>
+                    </div>
+                    <div class="row result-footer">
+                        <div class="col-md-9 result-categories">
+                            {{if HotelTags}}
+                            <ul>
+                                {{for HotelTags}}
+                                <li>{{>#data}}</li>
+                                {{/for}}
+                                <div class="clearfix"></div>
+                            </ul>
+                            {{/if}}
+                        </div>
+                        <div class="col-md-3 result-order">
+                            <button data-target="#order-hotel-modal" data-toggle="modal" data-hotel-id="{{:HotelID}}" data-roomtype-id="{{:RoomtypeID}}" data-from-date="{{:FromDate}}" data-to-date="{{:ToDate}}" class="btn btn-primary order-hotel-choice">
+                                Velg
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

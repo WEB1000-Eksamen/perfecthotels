@@ -6,9 +6,9 @@
         <div class="navbar-left active navbar-left-perfecthotels" id="search">
             <h1>Meny</h1>
             <ul class="navbar-left-menu">
-                <li><a href="">Hjelp</a></li>
-                <li><a href="">Dine bookings</a></li>
-                <li><a href="">Sjekk inn</a></li>
+                <li><a data-toggle="modal" data-target="#info-modal">Hjelp</a></li>
+                <li><a class="edit-bookings-btn" data-toggle="modal" data-target="#edit-bookings-modal" >Dine bookings</a></li>
+                <li><a>Sjekk inn</a></li>
                 <div class="clearfix"></div>
             </ul>
             <p>Finn et hotell som passer deg ved å benytte denne søkemodulen.</p>
@@ -18,8 +18,9 @@
                     <div class="col-md-12 text"><strong>Jeg ønsker et hotell i</strong></div>
                     <div class="col-md-12 select-country">
                         <img class="ajax-loader-gif" alt="Laster inn" src="assets/images/ajax-loader.gif" />
-                        <div class="btn-group select-country-group" data-toggle="buttons">
-                        </div>
+                        <select tabindex="1" name="country" style="display: none;" class="form-control select-country-group">
+                            <option disabled selected>Velg land...</option>
+                        </select>
                     </div>
                 </div>
 
@@ -28,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span id="fromDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input readonly name="fromDate" type="text" id="fromDate" class="form-control" aria-describedby="date-from-to" />
+                            <input tabindex="2" readonly name="fromDate" type="text" id="fromDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
 
                     </div>
@@ -36,7 +37,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span id="toDateButton" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input readonly name="toDate" type="text" id="toDate" class="form-control" aria-describedby="date-from-to" />
+                            <input tabindex="3" readonly name="toDate" type="text" id="toDate" class="form-control" aria-describedby="date-from-to" />
                         </div>
                     </div>
                 </div>
@@ -44,7 +45,8 @@
                 <div class="row select-query select-roomtype">
                     <div class="col-md-12 text"><strong>med romtype</strong></div>
                     <div class="col-md-12 select-roomtype-col">
-                        <select name="roomtype" class="form-control select-roomtype-group">
+                        <img class="ajax-loader-gif" alt="Laster inn" src="assets/images/ajax-loader.gif" />
+                        <select tabindex="4" name="roomtype" style="display: none;" class="form-control select-roomtype-group">
                             <option disabled selected>Velg romtype...</option>
                         </select>
                     </div>
@@ -52,7 +54,7 @@
 
                 <div class="row select-query">
                     <div class="col-md-12">
-                        <button id="searchBtn" class="btn btn-lg btn-danger btn-block">Søk</button>
+                        <button id="searchBtn" tabindex="5" class="btn btn-lg btn-danger btn-block">Søk</button>
                     </div>
                 </div>
 
@@ -64,7 +66,7 @@
         </div>
         <div class="row" id="results">
             <div class="col-md-12 page-header">
-                <h1>Perfect Hotels Premium</h1>
+                <h1>Perfect Hotels Premium <img class="ajax-loader-gif" style="display: none;" alt="Laster inn" src="assets/images/ajax-loader-black.gif" /></h1>
             </div>
             <div class="col-md-12" id="the-results">
                 <div class="row search-terms">
@@ -81,5 +83,5 @@
         </div>
     </div>
 <?php
-    require_once('app/views/layout/footer.html');
+    require_once 'app/views/layout/footer.php';
 ?>
