@@ -15,6 +15,28 @@ function getBookingsFromReference (reference, success) {
     });
 }
 
+function deleteBookingByID (bookingid, success, error) {
+    $.ajax({
+        url: 'app/api/deleteBooking.php',
+        method: 'POST',
+        data: {
+            BookingID: bookingid
+        }
+    }).done(function (result) {
+        if (result.success) {
+            success(result);
+            return;
+        }
+        if (result.error) {
+            error(result);
+            return;
+        }
+        
+        error({error: 'Vi kunne ikke fjerne bookingen, vennligst prøv på nytt.'});
+        
+    });
+}
+
 function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
     editBookingsModalContainer.addClass('edit');
     editBookingModal.find('.edit-bookings-modal-go-back').show();
@@ -28,6 +50,31 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
             $('.edit-bookings-modal-step2-number-of-bookings'),
             $('.edit-bookings-modal-step2-error')
         );
+        
+        
+        editBookingsModalContainer.on('click', '.btn-delete-booking', function () {
+            var bookingID = $(this).data('bookingId'),
+                bookingButton = $(this),
+                confString = 'Du er i ferd med å slette booking #' + bookingID + '. Er du sikker?',
+                conf = confirm(confString);
+            
+            if (conf) {
+                deleteBookingByID(bookingID, function (success) {
+                    bookingButton.closest('tr').addClass('bg-delete-error');
+                    bookingButton.closest('tr').fadeOut('slow');
+                    
+                    
+                }, function (error) {
+                    alert(error.error);
+                    bookingButton.closest('tr').addClass('bg-delete-error');
+                    setTimeout(function () {
+                        bookingButton.closest('tr').removeClass('bg-delete-error');
+                    }, 500);
+                });
+            }
+        });
+        
+        
     });
 }
 
@@ -56,7 +103,7 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
             tableRow        = $('<tr></tr>').data({ booking: parseInt(booking.BookingID) }),
             hotelNameCell   = $('<td></td>').text(booking.HotelName),
             roomtypeCell    = $('<td></td>'),
-            roomtypeSelect  = $('<select></select>').addClass('form-control'),
+            //roomtypeSelect  = $('<select></select>').addClass('form-control'),
             fromCell        = $('<td></td>'),
             toCell          = $('<td></td>'),
             fromDateInput = $('<input>')
@@ -79,9 +126,10 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
                 .text(
                     (parseInt(booking.Active) === 1) ? 'Ja' : 'Nei'
                 ),
-            buttonCell      = $('<td></td>');
+            buttonEditCell  = $('<td></td>'),
+            buttonDeleteCell = $('<td></td>');
         
-        for (var j = 0; j < booking.AvailableRoomtypes.length; j++) {
+        /*for (var j = 0; j < booking.AvailableRoomtypes.length; j++) {
             var roomtype = booking.AvailableRoomtypes[j],
                 option = $('<option></option>')
                             .attr({ 'value': parseInt(roomtype.RoomtypeID) })
@@ -91,18 +139,23 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
             }
             
             roomtypeSelect.append(option);
-        }
+        }*/
         
-        roomtypeCell.append(roomtypeSelect);
+        roomtypeCell.append(
+            booking.RoomtypeName
+            //roomtypeSelect
+        );
         fromCell.append(fromDateInput);
         toCell.append(toDateInput);
-        buttonCell.append('<button data-booking-id="' + booking.BookingID + '" class="btn btn-primary">Endre</button>');
+        buttonEditCell.append('<button data-booking-id="' + booking.BookingID + '" class="btn btn-primary btn-sm btn-update-booking">Endre</button>');
+        buttonDeleteCell.append('<button data-booking-id="' + booking.BookingID + '" class="btn btn-danger btn-sm btn-delete-booking">Slett</button>');
         tableRow.append(hotelNameCell);
         tableRow.append(roomtypeCell);
         tableRow.append(fromCell);
         tableRow.append(toCell);
         tableRow.append(checkedInCell);
-        tableRow.append(buttonCell);
+        tableRow.append(buttonEditCell);
+        tableRow.append(buttonDeleteCell);
         
         tableRows = tableRows + '<tr>' + tableRow.html() + '</tr>';
         
@@ -152,24 +205,3 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

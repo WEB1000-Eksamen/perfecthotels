@@ -4,40 +4,27 @@ require_once '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $database = new Database($config);
 $pdo = $database->getConnection();
 
-if (isset( $_POST['ToDate'],  $_POST['FromDate'], $_POST['BookingID'], $_POST['RoomtypeID'])) {
+if (isset( $_POST['ToDate'],  $_POST['FromDate'], $_POST['BookingID'])) {
     
-    $reference = $_POST['Reference'];
+    $todate = $_POST['ToDate'];
+    fromdate = $_POST['FromDate'];
+    $bookingid = $_POST['BookingID'];
     
     header("Content-Type: application/json");
     
     if (!ctype_alnum($reference) && strlen($reference) == 5) {
         echo json_encode(array(
-            'error' => 'Referansen er ikke gyldig.'
+            'error' => 'BookingIDen finnes ikke.'
         ));
         exit();
     }
     
     $stmt = $pdo->prepare("
-        SELECT
-            bookings.From,
-            bookings.To,
-            hotels.HotelName,
-            roomtypes.RoomtypeName
-        FROM bookings
-        INNER JOIN orders ON (
-            bookings.OrderID = orders.OrderID
-            AND
-            orders.Reference = ?
-        )
-        INNER JOIN hotelroomtypes ON (
-            bookings.HRID = hotelroomtypes.HRID
-        )
-        INNER JOIN hotels ON (
-            hotelroomtypes.HotelID = hotels.HotelID
-        )
-        INNER JOIN roomtypes ON (
-            hotelroomtypes.RoomtypeID = roomtypes.RoomtypeID
-        )
+        UPDATE bookings
+        SET From = ?,
+            To = ?
+        WHERE BookingID = ?
+        
     ");
     $stmt->execute(array($reference));
     

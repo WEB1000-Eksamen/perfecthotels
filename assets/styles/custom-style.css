@@ -442,3 +442,24 @@ div.tooltip-inner {
 .select-roomtype-col {
     text-align: center;
 }
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table>tbody>tr {
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    
+}
+
+.table-striped>tbody>tr.bg-delete-error {
+    background-color: #f2dede;
+};
+
+input.hasDatepicker {
+    cursor: pointer;
+}

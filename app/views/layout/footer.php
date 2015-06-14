@@ -44,7 +44,7 @@
                                 </div>
                                 <div style="display: none;" class="edit-bookings-modal-step2-table-container">
                                     <p>Du har <span class="edit-bookings-modal-step2-number-of-bookings"></span> bookings.</p>
-                                    <table class="table table-striped">
+                                    <table class="table table-striped table-bordered">
                                         <thead>
                                             <th>Hotellnavn</th>
                                             <th>Romtype</th>
@@ -52,6 +52,7 @@
                                             <th>Til</th>
                                             <th>Innsjekket</th>
                                             <th>Endre</th>
+                                            <th>Slett</th>
                                         </thead>
                                         <tbody class="edit-bookings-modal-step2-table"></tbody>
                                     </table>
