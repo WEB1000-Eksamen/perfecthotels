@@ -15,44 +15,24 @@ function getBookingsFromReference (reference, success) {
     });
 }
 
+function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
+    editBookingsModalContainer.addClass('edit');
+    editBookingModal.find('.edit-bookings-modal-go-back').show();
+
+    getBookingsFromReference(userInput.val(), function (data) {        
+        editBookingsModalContainer.find('.step2 .ajax-loader-container').hide();
+        fillBookingAPIResults(
+            data,
+            $('.edit-bookings-modal-step2-table-container'),
+            $('.edit-bookings-modal-step2-table'),
+            $('.edit-bookings-modal-step2-number-of-bookings'),
+            $('.edit-bookings-modal-step2-error')
+        );
+    });
+}
+
 function initBookingDatepickers (fromDateElement, toDateElement, options) {
     
-    var today = moment(),
-        tomorrow = moment(today).add(1, 'days'),
-        fromDateFn = function () {
-            fromDateElement.datepicker('show');
-        },
-        toDateFn = function () {
-            toDateElement.datepicker('show');
-        },
-        fromDateOptions = $.extend(true, {
-            minDate: today.toDate(),
-            onClose: function (selectedDate) {
-                if (selectedDate) {
-                    console.log(selectedDate);
-                    var minDateForRange = moment(selectedDate).add(1, 'days');
-                    toDateElement.datepicker("option", "minDate", minDateForRange.toDate());
-                    
-                    console.log(minDateForRange.toDate());
-                }
-            }
-        }, options),
-        toDateOptions = $.extend(true, {
-            minDate: tomorrow.toDate()
-        }, options);
-    
-    fromDateElement.datepicker(fromDateOptions);
-    toDateElement.datepicker(toDateOptions);
-    
-    fromDateElement.on({
-        click: fromDateFn,
-        focus: fromDateFn
-    });
-    
-    toDateElement.on({
-        click: toDateFn,
-        focus: toDateFn
-    });
 }
 
 function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, countSpanElement, errorContainerElement) {
@@ -68,38 +48,38 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
         return;
     }
     
+    var tableRows,
+        dateFields = [];
+    
     for (var i = 0; i < data.Bookings.length; i++) {
-        
-        console.log(data.Bookings.length);
-        
         var booking = data.Bookings[i],
-            tableRow = $('<tr></tr>').data({ booking: parseInt(booking.BookingID) }),
-            hotelNameCell = $('<td></td>').text(booking.HotelName),
-            roomtypeCell = $('<td></td>'),
-            roomtypeSelect = $('<select></select>').addClass('form-control'),
-            fromCell = $('<td></td>'),
-            toCell = $('<td></td>'),
+            tableRow        = $('<tr></tr>').data({ booking: parseInt(booking.BookingID) }),
+            hotelNameCell   = $('<td></td>').text(booking.HotelName),
+            roomtypeCell    = $('<td></td>'),
+            roomtypeSelect  = $('<select></select>').addClass('form-control'),
+            fromCell        = $('<td></td>'),
+            toCell          = $('<td></td>'),
             fromDateInput = $('<input>')
                 .attr({
                     id: 'fromDateBooking' + i,
-                    type: 'text'
+                    type: 'text',
+                    value: moment(booking.From).locale('nb').format('DD MMM YYYY')
                 })
                 .prop('readonly', true)
-                .val(moment(booking.From).locale('nb').format('DD MMM YYYY'))
                 .addClass('form-control'),
             toDateInput = $('<input>')
                 .attr({
                     id: 'toDateBooking' + i,
-                    type: 'text'
+                    type: 'text',
+                    value: moment(booking.To).locale('nb').format('DD MMM YYYY')
                 })
                 .prop('readonly', true)
-                .val(moment(booking.To).locale('nb').format('DD MMM YYYY'))
                 .addClass('form-control'),
             checkedInCell = $('<td></td>')
                 .text(
                     (parseInt(booking.Active) === 1) ? 'Ja' : 'Nei'
                 ),
-            buttonCell = $('<td></td>');
+            buttonCell      = $('<td></td>');
         
         for (var j = 0; j < booking.AvailableRoomtypes.length; j++) {
             var roomtype = booking.AvailableRoomtypes[j],
@@ -124,25 +104,53 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
         tableRow.append(checkedInCell);
         tableRow.append(buttonCell);
         
-        tableBodyElement.append(tableRow);
+        tableRows = tableRows + '<tr>' + tableRow.html() + '</tr>';
         
-        
-        initBookingDatepickers(
-            fromDateInput,
-            toDateInput,
-            {
-                showOn: "focus",
-                numberOfMonths: 1,
-                dateFormat: 'dd M yy'
-            }
-        );
-        
+        dateFields.push({ fromDate: fromDateInput, toDate: toDateInput });
     }
     
+    
+    tableBodyElement.html(tableRows);
     countSpanElement.text(data.NumberOfBookings);
     tableContainerElement.show();
     
-    
+    for (var i = 0; i < dateFields.length; i++) {
+        var today = moment(),
+            tomorrow = moment(today).add(1, 'days')
+        
+        tableBodyElement.find('#fromDateBooking' + i).datepicker({
+            showOn: "focus",
+            numberOfMonths: 1,
+            dateFormat: 'dd M yy',
+            minDate: today.toDate(),
+            onClose: function (selectedDate) {
+                if (selectedDate) {
+                    var minDateForRange = moment(selectedDate).add(1, 'days'),
+                        datePickerPartial = $(this).attr('id').substring(4);
+                    tableBodyElement.find('#to' + datePickerPartial).datepicker("option", "minDate", minDateForRange.toDate());
+                }
+            }
+        });
+        tableBodyElement.find('#toDateBooking' + i).datepicker({
+            showOn: "focus",
+            numberOfMonths: 1,
+            dateFormat: 'dd M yy',
+            minDate: tomorrow.toDate()
+        });
+
+        tableBodyElement.find('#fromDateBooking' + i).on('click', function () {
+            $(this).datepicker('show');
+        });
+        tableBodyElement.find('#fromDateBooking' + i).on('focus', function () {
+            $(this).datepicker('show');
+        });
+        tableBodyElement.find('#toDateBooking' + i).on('click', function () {
+            $(this).datepicker('show');
+        });
+        tableBodyElement.find('#toDateBooking' + i).on('focus', function () {
+            $(this).datepicker('show');
+        });
+    }
 }
 
 

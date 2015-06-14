@@ -23,8 +23,13 @@
                         <div class="row">
                             <div class="col-md-12" id="edit-bookings-modal-step1-container">
                                 <p>Vennligst oppgi referansenummer</p>
-                                <input class="form-control modal-bookings-reference-input" type="text" name="referenceNumber" data-toggle="tooltip" data-placement="top" title="Referansenummeret må være 6 tegn" />
-                                <button class="btn btn-default btn-lg btn-block modal-bookings-submit" disabled>Se/endre bookings</button>
+                                <input class="form-control modal-bookings-reference-input"
+                                       type="text"
+                                       name="referenceNumber"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Referansenummeret må være 6 tegn" />
+                                <button role="button" class="btn btn-default btn-lg btn-block modal-bookings-submit" disabled>Se/endre bookings</button>
                             </div>
                         </div>
                     </div>

@@ -20,21 +20,18 @@ $(function () {
             editBtn.attr('disabled', true);
         });
         
+        userInput.keydown(function (evt) {
+            if (evt.target.value.length === 6 && evt.keyCode === 13) {
+                editBtn.attr('disabled', false);
+                $(this).tooltip('hide');
+                goStepTwo(editBookingsModalContainer, editBookingModal, userInput);
+                return;
+            }
+        });
+        
         editBookingModal.on('click', '.modal-bookings-submit', function () {
             
-            editBookingsModalContainer.addClass('edit');
-            editBookingModal.find('.edit-bookings-modal-go-back').show();
-            
-            getBookingsFromReference(userInput.val(), function (data) {
-                editBookingsModalContainer.find('.step2 .ajax-loader-container').hide();
-                fillBookingAPIResults(
-                    data,
-                    $('.edit-bookings-modal-step2-table-container'),
-                    $('.edit-bookings-modal-step2-table'),
-                    $('.edit-bookings-modal-step2-number-of-bookings'),
-                    $('.edit-bookings-modal-step2-error')
-                );
-            });
+            goStepTwo(editBookingsModalContainer, editBookingModal, userInput);
             
         });
             // get the reference typed in
@@ -51,7 +48,7 @@ $(function () {
             userInput.val('');
             editBtn.attr('disabled', true);
             
-            $('.edit-bookings-modal-step2-table').empty();
+            $('.edit-bookings-modal-step2-table tr').remove();
             $('.edit-bookings-modal-step2-table-container').hide();
             $('.edit-bookings-modal-step2-error').empty().hide();
             $('.step2 .ajax-loader-container').show();
@@ -70,7 +67,7 @@ $(function () {
             userInput.val('');
             editBtn.attr('disabled', true);
             
-            $('.edit-bookings-modal-step2-table').empty();
+            $('.edit-bookings-modal-step2-table tr').remove();
             $('.edit-bookings-modal-step2-table-container').hide();
             $('.edit-bookings-modal-step2-error').empty().hide();
             $('.step2 .ajax-loader-container').show();
