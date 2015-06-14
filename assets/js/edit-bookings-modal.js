@@ -51,18 +51,28 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
             $('.edit-bookings-modal-step2-error')
         );
         
+        var bookingsBtn = editBookingsModalContainer.find('.btn-delete-booking');
         
-        editBookingsModalContainer.on('click', '.btn-delete-booking', function () {
+        bookingsBtn.on('click', function () {
             var bookingID = $(this).data('bookingId'),
                 bookingButton = $(this),
-                confString = 'Du er i ferd med å slette booking #' + bookingID + '. Er du sikker?',
+                confString = 'Er du sikker på at du vil slette bookingen?',
                 conf = confirm(confString);
             
             if (conf) {
                 deleteBookingByID(bookingID, function (success) {
+                    
+                    var numberOfBookingsEl = editBookingsModalContainer.find('.edit-bookings-modal-step2-number-of-bookings'),
+                        numberOfBookings = parseInt(numberOfBookingsEl.text());
+                    
+                    numberOfBookings = numberOfBookings - 1;
+                    
                     bookingButton.closest('tr').addClass('bg-delete-error');
                     bookingButton.closest('tr').fadeOut('slow');
                     
+                    numberOfBookingsEl.text(numberOfBookings--);
+                    
+                    console.log(numberOfBookings);
                     
                 }, function (error) {
                     alert(error.error);

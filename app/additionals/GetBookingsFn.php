@@ -50,6 +50,8 @@ class GetBookingsFn {
             INNER JOIN roomtypes ON (
                 hotelroomtypes.RoomtypeID = roomtypes.RoomtypeID
             )
+            ORDER BY
+                bookings.From ASC
         ");
         $stmt->execute(array($Reference));
         

@@ -19,7 +19,7 @@ if (isset($_POST['BookingID'])) {
     
     $stmt = $pdo->prepare($sql);
     
-    //$stmt->execute(array($_POST['BookingID']));
+    $stmt->execute(array($_POST['BookingID']));
     
     echo json_encode(array('success' => 'Bookingen ble fjernet.'));
 }

@@ -124,6 +124,8 @@ $(function () {
         
         getHotelsBySearch(countryID.val(), fromDate.val(), toDate.val(), roomtypeSelectGroup.val(), function (data) {
             
+            var navbar = $('.navbar-left');
+            
             // remove eventual old results
             resultContainer.find('.result-container').remove();
             
@@ -131,6 +133,10 @@ $(function () {
             fillResults(data, resultContainer, "#resultTmpl");
             
             $('.page-header').find('.ajax-loader-gif').hide();
+            
+            if (navbar.hasClass('active')) {
+                navbar.removeClass('active');
+            }
             
             return;
             

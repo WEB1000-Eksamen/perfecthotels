@@ -43,7 +43,7 @@
                                 <div style="display: none;" class="edit-bookings-modal-step2-error">
                                 </div>
                                 <div style="display: none;" class="edit-bookings-modal-step2-table-container">
-                                    <p>Du har <span class="edit-bookings-modal-step2-number-of-bookings"></span> bookings.</p>
+                                    <p>Du har <span class="edit-bookings-modal-step2-number-of-bookings"></span> booking(s).</p>
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <th>Hotellnavn</th>
