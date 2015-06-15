@@ -1,6 +1,6 @@
 <?php
 
-class PostBookingFns {
+class PostBookingFn {
     
     private $database;
 
@@ -16,7 +16,7 @@ class PostBookingFns {
      *
      * @return int
      */
-    private function getAvailableHRID ($HotelID, $RoomtypeID, $FromDate, $ToDate) {
+    protected function getAvailableHRID ($HotelID, $RoomtypeID, $FromDate, $ToDate) {
         $sql = "
             SELECT
                 hotelroomtypes.HRID

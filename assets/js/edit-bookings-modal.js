@@ -37,14 +37,15 @@ function deleteBookingByID (bookingid, success, error) {
     });
 }
 
-function editBookingByID (bookingid, fromdate, todate, success, error) {
+function editBookingByID (bookingid, fromdate, todate, hrid, success, error) {
     $.ajax({
         url: 'app/api/editBooking.php',
         method: 'POST',
         data: {
             BookingID: bookingid,
             FromDate: fromdate,
-            ToDate: todate
+            ToDate: todate,
+            HRID: hrid
         }
     }).done(function (result) {
         if (result.error) {
@@ -78,10 +79,12 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
                 dates = row.find('input'),
                 fromDate = row.find(dates[0]),
                 toDate = row.find(dates[1]),
-                bookingId = $(this).data('bookingId');
+                bookingId = $(this).data('bookingId'),
+                hrid = row.find('.roomtype').data('hrid');
             
             
-            editBookingByID(bookingId, fromDate.val(), toDate.val(), function (success) {
+            editBookingByID(bookingId, fromDate.val(), toDate.val(), hrid, function (success) {
+                
                 row.css('background-color', '#d9edf7');
                 
                 setTimeout(function () {
@@ -90,13 +93,12 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
                 
             },function (error) {
                 
-                alert(error.error);
-                
                 row.addClass('bg-delete-error');
+                alert(error.error);
                 
                 setTimeout(function () {
                     row.removeClass('bg-delete-error');
-                }, 1000);
+                }, 500);
             });
         });
         
@@ -157,8 +159,8 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
     for (var i = 0; i < data.Bookings.length; i++) {
         var booking = data.Bookings[i],
             tableRow        = $('<tr></tr>').data({ booking: parseInt(booking.BookingID) }),
-            hotelNameCell   = $('<td></td>').text(booking.HotelName),
-            roomtypeCell    = $('<td></td>'),
+            hotelNameCell   = $('<td></td>').text(booking.HotelName).attr('data-hotel-id', booking.HotelID).addClass('hotel'),
+            roomtypeCell    = $('<td></td>').addClass('roomtype').attr('data-hrid', booking.HRID),
             //roomtypeSelect  = $('<select></select>').addClass('form-control'),
             fromCell        = $('<td></td>'),
             toCell          = $('<td></td>'),

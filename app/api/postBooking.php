@@ -50,7 +50,7 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
     $Hash = Hash::make($Email);
     
     // return the Reference
-    $bookingHelpers = new PostBookingFns($pdo);
+    $bookingHelpers = new PostBookingFn($pdo);
     $response = $bookingHelpers->insertOrderBooking($HotelID, $RoomtypeID, $FromDate, $ToDate, $Email, $Hash);
     
     echo json_encode($response);

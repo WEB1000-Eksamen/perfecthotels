@@ -30,6 +30,7 @@ class GetBookingsFn {
                  bookings.BookingID
                 ,bookings.From
                 ,bookings.To
+                ,bookings.HRID
                 ,hotels.HotelName
                 ,roomtypes.RoomtypeName
                 ,roomtypes.RoomtypeID
