@@ -18,10 +18,11 @@ class CheckinBookingFn {
         }
         
         return $checkinsToday;
+    
     }
     
     public function referenceIsValid ($Reference) {
-        if (strlen($Reference) < 6 || strlen($Reference) > 6) {
+        if ((strlen($Reference) < 6 || strlen($Reference) > 6) && ctype_alnum($Reference)) {
             return false;
         }
         if (!ctype_alnum($Reference)) {
@@ -30,7 +31,11 @@ class CheckinBookingFn {
         return true;
     }
     
-    public function processCheckin ($BookingID, $Reference) {
+    /*
+        Krever en array (BookingIDs)
+    */
+    
+    public function processCheckin ($BookingIDs, $Reference) {
         $checkinsToday = $this->checkUserHasCheckinDate($Reference);
         $hasBookings = $this->userHasBookings($Reference);
         
@@ -41,30 +46,74 @@ class CheckinBookingFn {
             return array('error' => 'Ingen bookings ble funnet på referansen du oppga.');
         }
         
+        $getBookingRoom = $this->getBookingRoom($BookingIDs);
         $sql = "";
         
-        if (is_array($BookingID)) {
-            for ($i = 0; $i < sizeof($BookingID); $i++) {
+        if (is_array($BookingIDs)) {
+            for ($i = 0; $i < sizeof($BookingIDs); $i++) {
                 $sql .= "
                     UPDATE bookings
                     SET Active = true
                     WHERE bookings.BookingID = ?
                 ";
             }
-            $stmt = $this->database->prepare($sql);
-            $stmt->execute($BookingID);
-        } else {
-            $sql = "
-                UPDATE bookings
-                SET Active = true
-                WHERE bookings.BookingID = ?
-            ";
             
             $stmt = $this->database->prepare($sql);
-            $stmt->execute(array(
-                $BookingID
-            ));
+            $stmt->execute($BookingIDs);
+            
+            
+            if ($stmt->rowCount() > 0) {
+                return array('success' => 'Sjekk inn er fullført.', 'bookings' => $BookingIDs, 'rooms' => $getBookingRoom);
+            }
+            
+            return array('error' => 'En feil skjedde.');
         }
+    }
+    
+    /*
+        Krever en array (BookingIDs)
+    */
+    
+    private function getBookingRoom ($BookingIDs) {
+        $questionMarks = $this->generateQuestionMarks($BookingIDs);
+        
+        $sql = "
+            SELECT
+                rooms.RoomNumber
+            FROM bookings
+            INNER JOIN hotelroomtypes ON (
+                bookings.HRID = hotelroomtypes.HRID
+                AND
+                bookings.BookingID IN (" . $questionMarks . ")
+            )
+            INNER JOIN rooms ON (
+                hotelroomtypes.RoomID = rooms.RoomID
+            )
+        ";
+        
+        $data = array();
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute($BookingIDs);
+        
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return array('error' => 'Ingen rom ble funnet.');
+    }
+    
+    private function generateQuestionMarks ($array) {
+        $qMarks = "";
+        for ($i = 0; $i < sizeof($array); $i++) {
+            if ($i == sizeof($array) - 1) {
+                $qMarks .= "?";
+            } else {
+                $qMarks .= "?, ";
+            }
+        }
+        return $qMarks;
     }
     
     private function userHasBookings ($Reference) {
