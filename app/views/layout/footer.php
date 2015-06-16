@@ -35,19 +35,47 @@
                     </div>
                     <div class="step2">
                         <div class="row">
+                            <div class="col-md-12" id="checkin-modal-step2-container">
+                                <div class="ajax-loader-container">
+                                    <img src="assets/images/ajax-loader-big.gif" alt="Laster inn...">
+                                </div>
+                                <div class="checkin-modal-step2-error" style="display: none;">
+                                    <p class="checkin-modal-step2-error-text">Du må vente til sjekkinndatoen for å sjekke inn.</p>
+                                </div>
+                                <div class="checkin-modal-step2-success" style="display: none;">
+                                    <p>Vi fant <span class="checkin-modal-step2-number-of-bookings"></span> booking(s) du kan sjekke inn på i dag.</p>
+                                    <p>Vennligst velg booking(s) under du ønsker å sjekke inn på.</p>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <th>Velg</th>
+                                            <th>Hotellnavn</th>
+                                            <th>Romtype</th>
+                                            <th>Fra</th>
+                                            <th>Til</th>
+                                        </thead>
+                                        <tbody class="checkin-modal-step2-table-body">
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-primary checkin-modal-step2-do-booking">Sjekk inn</button>
+                                </div>                              
+                            </div>
                         </div>
                     </div>
                     <div class="step3">
                         <div class="row">
-                            <div class="col-md-12" id="checkin-modal-step1-container">
-                                <p>Vennligst oppgi referansenummer</p>
-                                <input class="form-control modal-checkin-reference-input"
-                                       type="text"
-                                       name="referenceNumber"
-                                       data-toggle="tooltip"
-                                       data-placement="top"
-                                       title="Referansenummeret må være 6 tegn" />
-                                <button role="button" class="btn btn-default btn-lg btn-block modal-checkin-submit" disabled>Sjekk inn</button>
+                            <div class="col-md-12" id="checkin-modal-step3-container">
+                                <div class="checkin-modal-step3-error"></div>
+                                <div class="checkin-modal-step3-success">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th>Hotellnavn</th>
+                                            <th>Bookingnummer</th>
+                                            <th>Romnummer</th>
+                                        </thead>
+                                        <tbody class="checkin-modal-step3-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

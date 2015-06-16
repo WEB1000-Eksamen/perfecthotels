@@ -1,9 +1,9 @@
 $(function () {
     $('.checkin-btn').on('click', function () {
-        var editBookingModal = $('#checkin-modal'),
-            editBookingsModalContainer = $('.checkin-modal-container'),
-            userInput = editBookingsModalContainer.find('.modal-checkin-reference-input'),
-            editBtn = editBookingsModalContainer.find('.modal-checkin-submit');
+        var checkinModal = $('#checkin-modal'),
+            checkinModalContainer = $('.checkin-modal-container'),
+            userInput = checkinModalContainer.find('.modal-checkin-reference-input'),
+            checkinBtn = checkinModalContainer.find('.modal-checkin-submit');
         
         userInput.tooltip({
             trigger: 'hover',
@@ -12,24 +12,27 @@ $(function () {
         
         userInput.keyup(function (evt) {
             if (evt.target.value.length === 6) {
-                editBtn.attr('disabled', false);
+                checkinBtn.attr('disabled', false);
+                checkinBtn.removeAttr('style');
                 $(this).tooltip('hide');
                 return;
             }
-            editBtn.attr('disabled', true);
+            checkinBtn.attr('disabled', true);
         });
         
         userInput.keydown(function (evt) {
+            // når brukeren har en referanse som er lang nok og man presser enter
             if (evt.target.value.length === 6 && evt.keyCode === 13) {
-                editBtn.attr('disabled', false);
+                checkinGoStepTwo(checkinModalContainer, checkinModal, $(this));
+                checkinBtn.attr('disabled', false);
                 $(this).tooltip('hide');
                 return;
             }
         });
         
-        editBookingModal.on('click', '.modal-checkin-submit', function () {
+        checkinModal.on('click', '.modal-checkin-submit', function () {
             
-            checkinGoStepTwo
+            checkinGoStepTwo(checkinModalContainer, checkinModal, userInput);
             
         });
     });

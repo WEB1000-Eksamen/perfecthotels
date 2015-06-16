@@ -12,7 +12,7 @@ class CheckinBookingFn {
         
         if (!$checkinsToday) {
             if ($hasBookings) {
-                return array('error' => 'Du må vente til første dag i bookingen din med å sjekke inn.');
+                return array('error' => 'Du må vente til første dag i bookingen din for å sjekke inn.');
             }
             return array('error' => 'Ingen bookings ble funnet på referansen du oppga.');
         }
@@ -41,7 +41,7 @@ class CheckinBookingFn {
         
         if (!$checkinsToday) {
             if ($hasBookings) {
-                return array('error' => 'Du må vente til første dag i bookingen din med å sjekke inn.');
+                return array('error' => 'Du må vente til første dag i bookingen din for å sjekke inn.');
             }
             return array('error' => 'Ingen bookings ble funnet på referansen du oppga.');
         }
@@ -63,7 +63,7 @@ class CheckinBookingFn {
             
             
             if ($stmt->rowCount() > 0) {
-                return array('success' => 'Sjekk inn er fullført.', 'bookings' => $BookingIDs, 'rooms' => $getBookingRoom);
+                return array('rooms' => $getBookingRoom);
             }
             
             return array('error' => 'En feil skjedde.');
@@ -145,7 +145,9 @@ class CheckinBookingFn {
             SELECT
                 bookings.BookingID,
                 hotels.HotelName,
-                roomtypes.RoomtypeName
+                roomtypes.RoomtypeName,
+                bookings.From,
+                bookings.To
             FROM bookings
             INNER JOIN hotelroomtypes ON (
                 hotelroomtypes.HRID = bookings.HRID

@@ -547,3 +547,21 @@ div.tooltip-inner {
     -ms-transform: translateX(-200%);
     transform: translateX(-200%);
 }
+
+.checkin-modal-container .table>tbody>tr>td {
+    vertical-align: middle;
+    text-align: left;
+}
+.checkin-modal-step2-error-text {
+    padding: 50px 20px;
+    text-align: center;
+    font-size: 30px;
+    background: #B81818;
+    color: #fff;
+    margin: 0;
+}
+
+.checkin-modal-step2-do-booking {
+    margin-bottom: 20px;
+}
+
