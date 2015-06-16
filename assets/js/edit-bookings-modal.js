@@ -42,10 +42,10 @@ function editBookingByID (bookingid, fromdate, todate, hrid, success, error) {
         url: 'app/api/editBooking.php',
         method: 'POST',
         data: {
-            BookingID: bookingid,
+            BookingID: parseInt(bookingid),
             FromDate: fromdate,
             ToDate: todate,
-            HRID: hrid
+            HRID: parseInt(hrid)
         }
     }).done(function (result) {
         if (result.error) {
@@ -227,7 +227,7 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
     
     for (var i = 0; i < dateFields.length; i++) {
         var today = moment(),
-            tomorrow = moment(today).add(1, 'days')
+            tomorrow = moment(today).add(1, 'days');
         
         tableBodyElement.find('#fromDateBooking' + i).datepicker({
             showOn: "focus",
@@ -238,6 +238,7 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
                 if (selectedDate) {
                     var minDateForRange = moment(selectedDate).add(1, 'days'),
                         datePickerPartial = $(this).attr('id').substring(4);
+                    
                     tableBodyElement.find('#to' + datePickerPartial).datepicker("option", "minDate", minDateForRange.toDate());
                 }
             }

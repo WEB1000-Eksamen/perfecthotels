@@ -13,7 +13,7 @@ if (isset( $_POST['HotelID'], $_POST['RoomtypeID'], $_POST['Email'], $_POST['Fro
     $RoomtypeID = $_POST['RoomtypeID'];
     $FromDate   = $_POST['FromDate'];
     $ToDate     = $_POST['ToDate'];
-    $Email      = $_POST['Email'];
+    $Email      = strtolower($_POST['Email']);
     
     $FromDate = date('Y-m-d', strtotime($FromDate));
     $ToDate = date('Y-m-d', strtotime($ToDate));

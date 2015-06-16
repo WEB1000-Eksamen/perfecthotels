@@ -14,3 +14,4 @@
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'PostBookingFn.php';
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'GetBookingsFn.php';
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'EditBookingsFn.php';
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'additionals' . DIRECTORY_SEPARATOR . 'CheckinBookingFn.php';

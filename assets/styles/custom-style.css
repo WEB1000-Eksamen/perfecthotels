@@ -466,3 +466,84 @@ div.tooltip-inner {
 .hasDatepicker {
     cursor: pointer;
 }
+
+
+/* JQUERY DATEPICKER */
+.ui-widget-header {
+    border: 1px solid #B81818;
+    background: #C01919;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: 1px solid #c92b2b;
+  background: #c92b2b;
+  color: #FFFFFF;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+  border: 1px solid #EC4C4C;
+  background: #EC4C4C;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.checkin-modal-container {
+    width: 300%;
+    min-width: 300%;
+    max-width: 300%;
+    padding: 0;
+}
+#checkin-modal-step1-container {
+    padding: 10px 20px;
+    background-color: #B81818;
+    color: #fff;
+}
+
+.modal-checkin-reference-input {
+  padding: 15px 12px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal-checkin-submit {
+    margin: 10px 0 0 0;
+}
+
+.checkin-modal-container .step3 {
+    float: left;
+    -webkit-transition: -webkit-transform 0.5s ease;
+    -moz-transition: -moz-transform 0.5s ease;
+    -o-transition: -o-transform 0.5s ease;
+    transition: transform .5s ease;
+}
+.checkin-modal-container .step3 .row {
+    padding: 0;
+    margin: 0;
+}
+
+.checkin-modal-container .step1,
+.checkin-modal-container .step2,
+.checkin-modal-container .step3 {
+    width: 33.3%;
+}
+
+.checkin-modal-container.checkin .step1,
+.checkin-modal-container.checkin .step2,
+.checkin-modal-container.checkin .step3 {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+.checkin-modal-container.checkin-done .step1,
+.checkin-modal-container.checkin-done .step2,
+.checkin-modal-container.checkin-done .step3 {
+    -moz-transform: translateX(-200%);
+    -webkit-transform: translateX(-200%);
+    -o-transform: translateX(-200%);
+    -ms-transform: translateX(-200%);
+    transform: translateX(-200%);
+}

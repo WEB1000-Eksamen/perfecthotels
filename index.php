@@ -8,7 +8,7 @@
             <ul class="navbar-left-menu">
                 <li><a data-toggle="modal" data-target="#info-modal">Hjelp</a></li>
                 <li><a class="edit-bookings-btn" data-toggle="modal" data-target="#edit-bookings-modal" >Dine bookings</a></li>
-                <li><a>Sjekk inn</a></li>
+                <li><a class="checkin-btn" data-toggle="modal" data-target="#checkin-modal">Sjekk inn</a></li>
                 <div class="clearfix"></div>
             </ul>
             <p>Finn et hotell som passer deg ved å benytte denne søkemodulen.</p>

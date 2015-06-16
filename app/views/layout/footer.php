@@ -9,6 +9,57 @@
         </div>
     </div>
 
+    <div data-backdrop="static" data-keyboard="false" class="modal fade" id="checkin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2>Sjekk inn</h2>
+                </div>
+                <div class="modal-body checkin-modal-container">
+                    <div class="step1">
+                        <div class="row">
+                            <div class="col-md-12" id="checkin-modal-step1-container">
+                                <p>Vennligst oppgi referansenummer</p>
+                                <input class="form-control modal-checkin-reference-input"
+                                       type="text"
+                                       name="referenceNumber"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Referansenummeret må være 6 tegn" />
+                                <button role="button" class="btn btn-default btn-lg btn-block modal-checkin-submit" disabled>Sjekk inn</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step2">
+                        <div class="row">
+                        </div>
+                    </div>
+                    <div class="step3">
+                        <div class="row">
+                            <div class="col-md-12" id="checkin-modal-step1-container">
+                                <p>Vennligst oppgi referansenummer</p>
+                                <input class="form-control modal-checkin-reference-input"
+                                       type="text"
+                                       name="referenceNumber"
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Referansenummeret må være 6 tegn" />
+                                <button role="button" class="btn btn-default btn-lg btn-block modal-checkin-submit" disabled>Sjekk inn</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button style="display: none;" class="btn btn-primary checkin-modal-go-back">Gå tilbake</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div data-backdrop="static" data-keyboard="false" class="modal fade" id="edit-bookings-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -89,6 +140,8 @@
     <script type="text/javascript" src="assets/js/result-helpers.js"></script>
     <script type="text/javascript" src="assets/js/modal-helpers.js"></script>
     <script type="text/javascript" src="assets/js/order-modal.js"></script>
+    <script type="text/javascript" src="assets/js/checkin.js"></script>
+    <script type="text/javascript" src="assets/js/checkin-modal.js"></script>
     <script type="text/javascript" src="assets/js/edit-bookings-modal.js"></script>
     <script type="text/javascript" src="assets/js/edit-bookings.js"></script>
     <script type="text/javascript" src="assets/js/init.js"></script>
