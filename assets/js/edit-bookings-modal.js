@@ -80,12 +80,15 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
                 fromDate = row.find(dates[0]),
                 toDate = row.find(dates[1]),
                 bookingId = $(this).data('bookingId'),
-                hrid = row.find('.roomtype').data('hrid');
+                hrid = row.find('.roomtype').data('hrid'),
+                thisButton = $(this);
             
+            thisButton.find('.edit-ajax-loader').show();
             
             editBookingByID(bookingId, fromDate.val(), toDate.val(), hrid, function (success) {
                 
                 row.css('background-color', '#d9edf7');
+                thisButton.find('.edit-ajax-loader').hide();
                 
                 setTimeout(function () {
                     row.removeAttr('style');
@@ -94,6 +97,7 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
             },function (error) {
                 
                 row.addClass('bg-delete-error');
+                thisButton.find('.edit-ajax-loader').hide();
                 alert(error.error);
                 
                 setTimeout(function () {
@@ -107,13 +111,18 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
             var bookingID = $(this).data('bookingId'),
                 delBookingButton = $(this),
                 confString = 'Er du sikker på at du vil slette bookingen?',
-                conf = confirm(confString);
+                conf = confirm(confString),
+                thisButton = $(this);
+            
+            thisButton.find('.edit-ajax-loader').show();
             
             if (conf) {
                 deleteBookingByID(bookingID, function (success) {
                     
                     var numberOfBookingsEl = editBookingsModalContainer.find('.edit-bookings-modal-step2-number-of-bookings'),
                         numberOfBookings = parseInt(numberOfBookingsEl.text());
+                    
+                    thisButton.find('.edit-ajax-loader').hide();
                     
                     numberOfBookings = numberOfBookings - 1;
                     
@@ -123,6 +132,8 @@ function goStepTwo (editBookingsModalContainer, editBookingModal, userInput) {
                     numberOfBookingsEl.text(numberOfBookings--);
                     
                 }, function (error) {
+                    thisButton.find('.edit-ajax-loader').hide();
+                    
                     alert(error.error);
                     delBookingButton.closest('tr').addClass('bg-delete-error');
                     setTimeout(function () {
@@ -186,27 +197,29 @@ function fillBookingAPIResults (data, tableContainerElement, tableBodyElement, c
                 ),
             buttonEditCell  = $('<td></td>'),
             buttonDeleteCell = $('<td></td>');
+
         
-        /*for (var j = 0; j < booking.AvailableRoomtypes.length; j++) {
-            var roomtype = booking.AvailableRoomtypes[j],
-                option = $('<option></option>')
-                            .attr({ 'value': parseInt(roomtype.RoomtypeID) })
-                            .text(roomtype.RoomtypeName);
-            if (booking.RoomtypeID == roomtype.RoomtypeID) {
-                option.attr('selected', 'selected');
-            }
+        var generatedDeleteButton = $('<button data-booking-id="' + booking.BookingID + '" class="btn btn-danger btn-sm btn-delete-booking">Slett <img src="assets/images/ajax-loader.gif" style="display: none;" class="edit-ajax-loader"></button>'),
+            generatedEditButton = $('<button data-booking-id="' + booking.BookingID + '" class="btn btn-primary btn-sm btn-update-booking">Endre <img src="assets/images/ajax-loader.gif" style="display: none;" class="edit-ajax-loader"></button>');
+        // IF BOOKING IS CHECKED IN
+        if (parseInt(booking.Active) === 1) {
+            generatedDeleteButton.prop('disabled', true);
+            generatedEditButton.prop('disabled', true);
             
-            roomtypeSelect.append(option);
-        }*/
+            fromCell.text(moment(booking.From).locale('nb').format('DD MMM YYYY'));
+            toCell.text(moment(booking.To).locale('nb').format('DD MMM YYYY'));
+            
+        } else {
+            fromCell.append(fromDateInput);
+            toCell.append(toDateInput);
+        }
         
         roomtypeCell.append(
             booking.RoomtypeName
             //roomtypeSelect
         );
-        fromCell.append(fromDateInput);
-        toCell.append(toDateInput);
-        buttonEditCell.append('<button data-booking-id="' + booking.BookingID + '" class="btn btn-primary btn-sm btn-update-booking">Endre</button>');
-        buttonDeleteCell.append('<button data-booking-id="' + booking.BookingID + '" class="btn btn-danger btn-sm btn-delete-booking">Slett</button>');
+        buttonEditCell.append(generatedEditButton);
+        buttonDeleteCell.append(generatedDeleteButton);
         tableRow.append(hotelNameCell);
         tableRow.append(roomtypeCell);
         tableRow.append(fromCell);

@@ -30,7 +30,7 @@ if (isset($_GET['HotelID'], $_GET['RoomtypeID'])) {
                 roomtypes.RoomtypeID = ?
             )
             INNER JOIN images ON ( 
-                roomtypes.ImageID = images.ImageID 
+                hotelroomtypes.ImageID = images.ImageID 
             )
             INNER JOIN countries ON (
                 hotels.CountryID = countries.CountryID
@@ -46,7 +46,6 @@ if (isset($_GET['HotelID'], $_GET['RoomtypeID'])) {
     
     if ($stmt->rowCount() > 0 && ctype_digit($hotelid)) {
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        $data['Price'] = number_format($data['Price'], 0, '', ' ');
         echo json_encode($data);
     } else {
         echo json_encode(array('error' => 'No hotels on this ID was found', 'errorCode' => 1));

@@ -7,6 +7,23 @@ class EditBookingsFn extends PostBookingFn {
         $this->database = $pdo;
     }
     
+    private function alreadyCheckedIn ($BookingID) {
+        $sql = "
+            SELECT bookings.Active
+            FROM bookings
+            WHERE bookings.BookingID = ?
+            AND bookings.Active = true
+        ";
+        
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute(array($BookingID));
+        
+        if ($stmt->rowCount() > 0) {
+            return true;
+        }
+        return false;
+    }
+    
     private function alreadyBooked ($FromDate, $ToDate, $HRID, $BookingID) {
         $sql = "
             SELECT
@@ -83,6 +100,10 @@ class EditBookingsFn extends PostBookingFn {
         
         if (!$FromDate && !$ToDate && !$BookingID) {
             return array('error' => 'Vennligst sjekk at alle feltene er riktig utfylt.', 'ID' => $BookingID, 'Hotelrom' => $HRID, 'Dates' => array($FromDate, $ToDate));
+        }
+        
+        if ($this->alreadyCheckedIn($BookingID)) {
+            return array('error' => 'Du kan ikke endre en booking du er sjekket inn på.');
         }
         
         if ($this->alreadyBookedByUser($FromDate, $ToDate, $HRID, $BookingID)) {

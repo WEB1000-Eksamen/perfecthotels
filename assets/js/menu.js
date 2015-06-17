@@ -34,6 +34,23 @@ function getRoomtypes (callback, errorCallback) {
     });
 }
 
+function getRoomtypesByCountry (countryid, callback, errorCallback) {
+    $.ajax({
+        url: 'app/api/getRoomtypesByCountry.php',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            CountryID: countryid
+        }
+    }).done(function (result) {
+        if (result.error) {
+            errorCallback(result.error);
+            return;
+        }
+        callback(result);
+    });
+}
+
 function fillCountryGroup (countryGroup, selectCountryContainer, loader) {
 
     var i = 0;
@@ -50,7 +67,7 @@ function fillCountryGroup (countryGroup, selectCountryContainer, loader) {
 
             i++;
         }
-        selectCountryContainer.find(loader).remove();
+        selectCountryContainer.find(loader).hide();
         countryGroup.show();
     }, function (errorText) {
         countryGroup.remove();
@@ -59,11 +76,17 @@ function fillCountryGroup (countryGroup, selectCountryContainer, loader) {
     });
 }
 
-function fillRoomtypeGroup (roomtypeGroup, selectRoomtypeContainer, loader) {
+function fillRoomtypeGroup (countryId, roomtypeGroup, selectRoomtypeContainer, loader, searchBtn, inputFields) {
 
     var i = 0;
-
-    getRoomtypes(function (roomtypes) {
+    
+    if (roomtypeGroup.children().length > 0) {
+        roomtypeGroup.children().hide();
+    }
+    
+    selectRoomtypeContainer.find('.roomtype-error-text').hide();
+    
+    getRoomtypesByCountry(countryId, function (roomtypes) {
         for (roomtypeIndex in roomtypes) {
 
             var roomtype = roomtypes[roomtypeIndex],
@@ -76,11 +99,18 @@ function fillRoomtypeGroup (roomtypeGroup, selectRoomtypeContainer, loader) {
 
             i++;
         }
-        selectRoomtypeContainer.find(loader).remove();
+        
+        validateFields(searchBtn, inputFields);
+        
+        selectRoomtypeContainer.find(loader).hide();
+        selectRoomtypeContainer.find('.roomtype-error-text').hide();
         roomtypeGroup.show();
     }, function (errorText) {
-        roomtypeGroup.remove();
-        $('.select-roomtype-col').append('<p></p>').text(errorText);
+        var errorField = $('.select-roomtype-col').find('.roomtype-error-text');
+        roomtypeGroup.hide();
+        roomtypeGroup.empty();
+        selectRoomtypeContainer.find(loader).hide();
+        errorField.text(errorText).show();
         $('#searchBtn').attr('disabled', true);
     });
 }

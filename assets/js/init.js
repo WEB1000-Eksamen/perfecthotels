@@ -86,12 +86,19 @@ $(function () {
     
     /* MENU AJAX */
     var countrySelectGroup = $('.select-country-group'),
-        roomtypeSelectGroup = $('.select-roomtype-group');
+        roomtypeSelectGroup = $('.select-roomtype-group'),
+        inputFields = [toDate, fromDate, roomtypeSelectGroup];
     
     fillCountryGroup(countrySelectGroup, $('.select-country'), ajaxLoader);
-    fillRoomtypeGroup(roomtypeSelectGroup, $('.select-roomtype-col'), ajaxLoader);
-    
-    var inputFields = [toDate, fromDate, roomtypeSelectGroup];
+
+    countrySelectGroup.on('change', function () {
+        var countryId = $(this).find('option:selected').val();
+        searchBtn.prop('disabled', true);
+        $('.select-roomtype-col').find('.ajax-loader-gif').show();
+        //roomtypeSelectGroup.hide();
+        
+        fillRoomtypeGroup(countryId, roomtypeSelectGroup, $('.select-roomtype-col'), ajaxLoader, searchBtn, inputFields);
+    });
     
     for (input in inputFields) {
         inputFields[input].on('change', function () {

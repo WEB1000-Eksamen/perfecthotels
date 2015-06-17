@@ -18,6 +18,10 @@ $(function () {
             data.FromDate = fromDate;
             data.ToDate = toDate;
             
+            var from = moment(data.FromDate),
+                to = moment(data.ToDate);
+            data.Price = formatMoney(to.diff(from, 'days') * data.Price);
+            
             modalContainer.find('.ajax-loader-container').hide();
             
             fillResults(data, modalContainer, '#orderModalTmpl');
@@ -76,8 +80,8 @@ $(function () {
     });
     
     modalContainer.on('click', '.close', function () {
-        modalContainer.empty();
-        modalContainer.find('.ajax-loader-container').hide();
+        modalContainer.children().not('.ajax-loader-container').remove();
+        modalContainer.find('.ajax-loader-container').show();
         
         if (modalContainer.hasClass('order')) {
             modalContainer.removeClass('order');

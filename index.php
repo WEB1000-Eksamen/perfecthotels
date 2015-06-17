@@ -45,7 +45,8 @@
                 <div class="row select-query select-roomtype">
                     <div class="col-md-12 text"><strong>med romtype</strong></div>
                     <div class="col-md-12 select-roomtype-col">
-                        <img class="ajax-loader-gif" alt="Laster inn" src="assets/images/ajax-loader.gif" />
+                        <img style="display: none;" class="ajax-loader-gif" alt="Laster inn" src="assets/images/ajax-loader.gif" />
+                        <p class="roomtype-error-text">Velg land først.</p>
                         <select tabindex="4" name="roomtype" style="display: none;" class="form-control select-roomtype-group">
                             <option disabled selected>Velg romtype...</option>
                         </select>
@@ -70,8 +71,8 @@
             </div>
             <div class="col-md-12" id="the-results">
                 <div class="row search-terms">
-                    <div class="col-md-4 col-xs-4 text-center">Land: <strong id="search-term-country">Norge</strong></div>
                     <div class="col-md-4 col-xs-4 text-center">Dato: <strong><span id="search-term-fromdate">10 Jun 2015</span> - <span id="search-term-todate">13 Jun 2015</span></strong></div>
+                    <div class="col-md-4 col-xs-4 text-center">Land: <strong id="search-term-country">Norge</strong></div>
                     <div class="col-md-4 col-xs-4 text-center">Romtype: <strong id="search-term-roomtype">Suite</strong></div>
                 </div>
                 <div class="row result-errors">

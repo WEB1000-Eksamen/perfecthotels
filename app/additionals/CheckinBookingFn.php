@@ -54,7 +54,7 @@ class CheckinBookingFn {
                 $sql .= "
                     UPDATE bookings
                     SET Active = true
-                    WHERE bookings.BookingID = ?
+                    WHERE bookings.BookingID = ?;
                 ";
             }
             
@@ -63,11 +63,13 @@ class CheckinBookingFn {
             
             
             if ($stmt->rowCount() > 0) {
-                return array('rooms' => $getBookingRoom);
+                return array($getBookingRoom);
             }
             
-            return array('error' => 'En feil skjedde.');
+            return array('error' => 'En feil skjedde.', 'rowCount' => $stmt->rowCount(), 'bookingids' => $BookingIDs, 'rooms' => $getBookingRoom, 'sql' => $sql);
         }
+        
+        return array('error' => 'Feil type data mottatt');
     }
     
     /*
@@ -79,7 +81,10 @@ class CheckinBookingFn {
         
         $sql = "
             SELECT
-                rooms.RoomNumber
+                rooms.RoomNumber,
+                hotels.HotelName,
+                orders.Reference,
+                roomtypes.RoomtypeName
             FROM bookings
             INNER JOIN hotelroomtypes ON (
                 bookings.HRID = hotelroomtypes.HRID
@@ -88,6 +93,15 @@ class CheckinBookingFn {
             )
             INNER JOIN rooms ON (
                 hotelroomtypes.RoomID = rooms.RoomID
+            )
+            INNER JOIN hotels ON (
+                hotelroomtypes.HotelID = hotels.HotelID
+            )
+            INNER JOIN roomtypes ON (
+            	roomtypes.RoomtypeID = hotelroomtypes.RoomtypeID    
+            )
+            INNER JOIN orders ON (
+            	orders.OrderID = bookings.OrderID
             )
         ";
         

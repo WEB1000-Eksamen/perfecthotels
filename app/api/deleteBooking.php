@@ -8,10 +8,23 @@ if (isset($_POST['BookingID'])) {
     
     header('Content-Type: application/json');
     
-    $test = false;
-    
-    if (!ctype_digit($_POST['BookingID']) && $test) {
+    if (!ctype_digit($_POST['BookingID'])) {
         echo json_encode(array('error' => 'Ugyldig bookingidentifikasjon'));
+        exit();
+    }
+    
+    $checkSql = "
+        SELECT bookings.BookingID
+        FROM bookings
+        WHERE bookings.BookingID = ?
+        AND Active = true
+    ";
+    
+    $stmtC = $pdo->prepare($checkSql);
+    $stmtC->execute(array($_POST['BookingID']));
+    
+    if ($stmtC->rowCount() > 0) {
+        echo json_encode(array('error' => 'Du kan ikke slette en booking du har sjekket inn på.'));
         exit();
     }
     

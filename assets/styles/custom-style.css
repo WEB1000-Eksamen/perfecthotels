@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:700,300,600,800);
 
 html, body, .front-page, .row, .col-md-3, .col-md-9 {
     height: 100%;
@@ -256,7 +256,7 @@ p {
 }
 .result-categories ul li {
     float: left;
-    width: 200px;
+    width: 180px;
 }
 
 .result-order {
@@ -552,7 +552,8 @@ div.tooltip-inner {
     vertical-align: middle;
     text-align: left;
 }
-.checkin-modal-step2-error-text {
+.checkin-modal-step2-error-text
+.checkin-modal-step3-error-text, {
     padding: 50px 20px;
     text-align: center;
     font-size: 30px;
@@ -561,7 +562,21 @@ div.tooltip-inner {
     margin: 0;
 }
 
-.checkin-modal-step2-do-booking {
-    margin-bottom: 20px;
+
+
+.table-striped>.checkin-modal-step2-table-body>tr:nth-of-type(odd):hover,
+.table-striped>.checkin-modal-step2-table-body>tr:nth-of-type(even):hover,
+.table-striped>.checkin-modal-step2-table-body>tr:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+.navbar-left .roomtype-error-text {
+    margin: 0;
+    padding: 20px;
+    background-color: #B81818;
 }
 
+
+.form-control[readonly].hasDatepicker {
+    text-align: center;
+}

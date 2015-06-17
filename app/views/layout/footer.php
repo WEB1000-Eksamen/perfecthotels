@@ -40,14 +40,14 @@
                                     <img src="assets/images/ajax-loader-big.gif" alt="Laster inn...">
                                 </div>
                                 <div class="checkin-modal-step2-error" style="display: none;">
-                                    <p class="checkin-modal-step2-error-text">Du må vente til sjekkinndatoen for å sjekke inn.</p>
+                                    <p class="checkin-modal-step2-error-text"></p>
                                 </div>
                                 <div class="checkin-modal-step2-success" style="display: none;">
                                     <p>Vi fant <span class="checkin-modal-step2-number-of-bookings"></span> booking(s) du kan sjekke inn på i dag.</p>
                                     <p>Vennligst velg booking(s) under du ønsker å sjekke inn på.</p>
                                     <table class="table table-striped table-bordered">
                                         <thead>
-                                            <th>Velg</th>
+                                            <th class="text-center">Velg</th>
                                             <th>Hotellnavn</th>
                                             <th>Romtype</th>
                                             <th>Fra</th>
@@ -56,7 +56,6 @@
                                         <tbody class="checkin-modal-step2-table-body">
                                         </tbody>
                                     </table>
-                                    <button class="btn btn-primary checkin-modal-step2-do-booking">Sjekk inn</button>
                                 </div>                              
                             </div>
                         </div>
@@ -64,13 +63,20 @@
                     <div class="step3">
                         <div class="row">
                             <div class="col-md-12" id="checkin-modal-step3-container">
-                                <div class="checkin-modal-step3-error"></div>
-                                <div class="checkin-modal-step3-success">
-                                    <table class="table table-striped">
+                                <div class="ajax-loader-container">
+                                    <img src="assets/images/ajax-loader-big.gif" alt="Laster inn...">
+                                </div>
+                                <div class="checkin-modal-step3-error" style="display: none;">
+                                    <p class="checkin-modal-step3-error-text"></p>
+                                </div>
+                                <div class="checkin-modal-step3-success" style="display: none;">
+                                    <p>Du er nå sjekket inn! Velkommen skal du være.</p>
+                                    <table class="table table-striped table-bordered">
                                         <thead>
                                             <th>Hotellnavn</th>
-                                            <th>Bookingnummer</th>
+                                            <th>Referanse</th>
                                             <th>Romnummer</th>
+                                            <th>Romtype</th>
                                         </thead>
                                         <tbody class="checkin-modal-step3-table-body">
                                         </tbody>
@@ -82,7 +88,9 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="modal-footer">
-                    <button style="display: none;" class="btn btn-primary checkin-modal-go-back">Gå tilbake</button>
+                    <button style="display: none;" class="btn btn-success pull-right checkin-modal-step2-do-booking">Sjekk inn</button>
+                    <button style="display: none;" class="btn btn-primary pull-left checkin-modal-go-back">Gå tilbake</button>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
