@@ -10,7 +10,7 @@ function config () {
             "password" => "", // pki55Fez
             "provider" => "mysql",
             "host" => "localhost",
-            "dbname" => "web-is-gr11w"
+            "dbname" => "perfecthotels"
         )
         
     );

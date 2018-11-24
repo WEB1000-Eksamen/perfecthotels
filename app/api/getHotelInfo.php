@@ -18,7 +18,7 @@ if (isset($_GET['HotelID'], $_GET['RoomtypeID'])) {
                 ,roomtypes.RoomtypeName
                 ,roomtypes.RoomtypeID
                 ,roomtypes.Price
-                ,images.URL
+                ,images.URL as ImageURL
 
             FROM hotels
             INNER JOIN hotelroomtypes ON (
@@ -29,7 +29,7 @@ if (isset($_GET['HotelID'], $_GET['RoomtypeID'])) {
                 AND
                 roomtypes.RoomtypeID = ?
             )
-            INNER JOIN images ON ( 
+            LEFT OUTER JOIN images ON ( 
                 hotelroomtypes.ImageID = images.ImageID 
             )
             INNER JOIN countries ON (
